@@ -95,7 +95,7 @@
         </div>
         <div class="texto-blo2">
             <div class="form-group">
-                <strong>Folio:</strong>
+                <strong>Folio:{{ $folio }}-{{ str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT) }}</strong>
             </div>
             <div class="form-group">
                 <strong>Fecha:</strong>
@@ -277,28 +277,35 @@
         <h4 style="text-align: center; margin-top: 10px;">Detalles de pago</h4>
         <table>
             <tr>
-                <th style="text-align: center; font-size:13px;"><strong>Servicio</strong></th>
-                <th style="text-align: center; font-size:13px;"><strong>Importe</strong></th>
-                <th style="text-align: center; font-size:13px;"><strong>Descuento</strong></th>
-                <th style="text-align: center; font-size:13px;"><strong>Anticipo 50%</strong></th>
+                <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Servicio</strong></th>
+                <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Importe</strong></th>
+                <th style="text-align: center; font-size:14px; font-weight:bold; background:#9cf85096;"><strong>Descuento</strong></th>
+                <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Anticipo 50%</strong></th>
             </tr>
             <tr>
-                <td style="font-size:13px;">{{ $cotizacione->servicio }} {{ $cotizacione->planes }}</td>
-                <td style="text-align: center; font-size:13px;">${{ $cotizacione->importe }} MXN</td>
-                <td style="text-align: center; font-size:13px;">${{ $cotizacione->descuento }} MXN</td>
-                <td style="text-align: center; font-size:13px;">${{ $cotizacione->anticipo }} MXN</td>
+                <td style="font-size:13px; background:#f5f5f2;">{{ $cotizacione->servicio }} {{ $cotizacione->planes }}</td>
+                <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $cotizacione->importe }} MXN</td>
+                <td style="text-align: center; font-size:13px; background:#9cf85096;">${{ $cotizacione->descuento }} MXN</td>
+                <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $anticipopr }} MXN</td>
             </tr>
-            @if(!empty($cotizacione->servicioadicional) && !empty($cotizacione->importeadicional))
+            @for($i = 1; $i <= 8; $i++)
+                @php
+                    $servicioKey = "servicioadicional{$i}";
+                    $importeKey = "importeadicional{$i}";
+                @endphp
+
+                @if(!empty($cotizacione->$servicioKey) && !empty($cotizacione->$importeKey))
                 <tr>
-                    <td style="font-size:13px;">{{ $cotizacione->servicioadicional }}</td>
-                    <td style="text-align: center; font-size:13px;">${{ $cotizacione->importeadicional }} MXN</td>
-                    <td style="text-align: center; font-size:13px;">$0 MXN</td>
-                    <td style="text-align: center; font-size:13px;">${{ $cotizacione->anticipoadi }} MXN</td>
+                    <td style="font-size:13px; background:#f5f5f2;">{{ $cotizacione->$servicioKey }}</td>
+                    <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $cotizacione->$importeKey }} MXN</td>
+                    <td style="text-align: center; font-size:13px; background:#9cf85096;">$0 MXN</td>
+                    <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ number_format($cotizacione->$importeKey / 2, 2, '.', '') }} MXN</td>
                 </tr>
-            @endif
+                @endif
+            @endfor
             <tr>
-                <td style="font-size:13px;" colspan="3" id="montoEnTexto"></td>
-                <td style="text-align: center; font-size:13px;">${{ $cotizacione->total }} MXN</td>
+                <td style="font-size:13px; border: none;" colspan="3"></td>
+                <td style="text-align: center; font-size:13px; background:#9cf85096;">${{ $cotizacione->total }} MXN</td>
             </tr>
         </table>
         <h4 style="text-align: center; margin-top: 40px;">Información de pago</h4>
@@ -336,63 +343,7 @@
         <img class="tech" src="assets/tech.png">
 
 </div>
-<script>
-    function convertirMontoATexto(monto) {
-        // Array de nombres para los números en letras
-        var nombres = [
-            '', 'Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco', 'Seis', 'Siete', 'Ocho', 'Nueve',
-            'Diez', 'Once', 'Doce', 'Trece', 'Catorce', 'Quince', 'Dieciséis', 'Diecisiete', 'Dieciocho', 'Diecinueve',
-        ];
 
-        // Array de nombres para las decenas en letras
-        var decenas = [
-            '', '', 'Veinte', 'Treinta', 'Cuarenta', 'Cincuenta', 'Sesenta', 'Setenta', 'Ochenta', 'Noventa',
-        ];
-
-        // Array de nombres para las unidades de cien a diez mil
-        var unidadesCientosDiezMiles = [
-            '', 'Ciento', 'Doscientos', 'Trescientos', 'Cuatrocientos', 'Quinientos', 'Seiscientos', 'Setecientos', 'Ochocientos', 'Novecientos',
-            'Mil', 'Dos Mil', 'Tres Mil', 'Cuatro Mil', 'Cinco Mil', 'Seis Mil', 'Siete Mil', 'Ocho Mil', 'Nueve Mil',
-            'Diez Mil'
-            // Puedes agregar más escalas según tus necesidades
-        ];
-
-        // Convertir el monto a formato de número con palabras
-        var montoEnPalabras = '';
-
-        // Función para convertir un número en cien a diez mil a palabras
-        function convertirCientosADiezMil(numero) {
-            var resultado = '';
-
-            if (numero >= 100) {
-                resultado += unidadesCientosDiezMiles[Math.floor(numero / 100)];
-                numero %= 100;
-            }
-
-            if (numero >= 20) {
-                resultado += (resultado === '' ? '' : ' y ') + decenas[Math.floor(numero / 10)];
-                numero %= 10;
-            }
-
-            if (numero > 0) {
-                resultado += (resultado === '' ? '' : ' y ') + nombres[numero];
-            }
-
-            return resultado;
-        }
-
-        // Convertir el monto en palabras
-        montoEnPalabras = convertirCientosADiezMil(Math.floor(monto));
-
-        return montoEnPalabras + ' MXN';
-    }
-
-    // Obtener el valor del monto en el segundo campo
-    var monto = parseInt("{{ $cotizacione->total }}");
-
-    // Convertir el monto a texto y mostrarlo en el primer campo
-    document.getElementById('montoEnTexto').innerText = convertirMontoATexto(monto);
-</script>
 
 </body>
 </html>

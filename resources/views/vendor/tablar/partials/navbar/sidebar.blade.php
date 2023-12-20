@@ -9,7 +9,7 @@
                 aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <h1 class="navbar-brand navbar-brand-autodark">
+        <h1 class="navbar-brand navbar-brand">
             @include('tablar::partials.common.logo')
         </h1>
         <div class="navbar-nav flex-row d-lg-none">
@@ -148,6 +148,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="sidebar-menu">
+            <h6 style="text-align: center; color:white;">versión 1.0.5</h6>
             <ul style="font-size: 15px;" class="navbar-nav pt-lg-4">
                 @each('tablar::partials.navbar.dropdown-item',$tablar->menu('sidebar'), 'item')
             </ul>

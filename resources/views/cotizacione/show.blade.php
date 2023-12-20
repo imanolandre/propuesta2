@@ -1,3 +1,8 @@
+<div id="full-page-loader" class="full-page-loader">
+    <!-- Puedes ajustar la clase según la implementación de spinners de Tabler.io -->
+    <div class="spinner"></div>
+</div>
+<div id="content">
 @extends('tablar::page')
 
 @section('title', 'View Cotizacione')
@@ -58,29 +63,36 @@
                             </div>
                             <div class="form-group" style="margin-bottom: 5px;">
                             <strong>Importe:</strong>
-                            {{ $cotizacione->importe }}
+                            ${{ $cotizacione->importe }} MXN
                             </div>
                             <div class="form-group" style="margin-bottom: 5px;">
                             <strong>Descuento:</strong>
-                            {{ $cotizacione->descuento }}
+                            ${{ $cotizacione->descuento }} MXN
                             </div>
-                            @if(!empty($cotizacione->servicioadicional) && !empty($cotizacione->importeadicional))
-                                <div class="form-group" style="margin-bottom: 5px;">
-                                    <strong>Servicioadicional:</strong>
-                                    {{ $cotizacione->servicioadicional }}
-                                </div>
-                                <div class="form-group" style="margin-bottom: 5px;">
-                                    <strong>Importeadicional:</strong>
-                                    {{ $cotizacione->importeadicional }}
-                                </div>
-                            @endif
+                            @for($i = 1; $i <= 8; $i++)
+                                    @php
+                                        $servicioKey = "servicioadicional{$i}";
+                                        $importeKey = "importeadicional{$i}";
+                                    @endphp
+
+                                    @if(!empty($cotizacione->$servicioKey) && !empty($cotizacione->$importeKey))
+                                        <div class="form-group" style="margin-bottom: 5px;">
+                                            <strong>Servicio adicional {{ $i }}:</strong>
+                                            {{ $cotizacione->$servicioKey }}
+                                        </div>
+                                        <div class="form-group" style="margin-bottom: 5px;">
+                                            <strong>Importe adicional {{ $i }}:</strong>
+                                            ${{ $cotizacione->$importeKey }} MXN
+                                        </div>
+                                    @endif
+                            @endfor
                             <div class="form-group" style="margin-bottom: 5px;">
                                 <strong>Total:</strong>
-                                {{ $cotizacione->total }}
+                                ${{ $cotizacione->total }} MXN
                             </div>
                             <div class="form-group" style="margin-bottom: 5px;">
                                 <strong>Anticipo:</strong>
-                                {{ $cotizacione->anticipo }}
+                                ${{ $cotizacione->anticipo }} MXN
                             </div>
                             <div class="form-group d-flex justify-content-between" style="margin-bottom: 5px;">
                                 <strong>Documento:</strong>
@@ -142,6 +154,8 @@
         #pdfModal .modal-body canvas {
             max-width: 100%;
             height: auto;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
@@ -176,5 +190,42 @@
         }
     </script>
 @endsection
+</div>
+<style>
+    /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
+#full-page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
 
+/* Estilos del Spinner */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #102b5e; /* Puedes ajustar el color según el esquema de colores de tu aplicación */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
 
+/* Animación del Spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+</style>
+<script>
+    // Ocultar el Spinner cuando la página se carga completamente
+    window.addEventListener('load', function () {
+        document.getElementById('full-page-loader').style.display = 'none';
+    });
+</script>

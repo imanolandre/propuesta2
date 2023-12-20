@@ -21,30 +21,11 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        $buscarpor = $request->input('buscarpor', '');
-        $orden = $request->input('orden', 'nombrecliente');
-        $direccion = $request->input('direccion', 'asc');
+        $clientes = Cliente::all();
 
-        // Determina la dirección por defecto
-        $direccionNombrecliente = ($orden === 'nombrecliente') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionCorreo = ($orden === 'correo') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionTelefono = ($orden === 'teléfono') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionEmpresa = ($orden === 'empresa') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionSitioweb = ($orden === 'sitioweb') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionDireccion = ($orden === 'dirección') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-
-        $clientes = Cliente::where('nombrecliente', 'like', '%' . $buscarpor . '%')
-            ->orWhere('correo', 'like', '%' . $buscarpor . '%')
-            ->orWhere('teléfono', 'like', '%' . $buscarpor . '%')
-            ->orWhere('empresa', 'like', '%' . $buscarpor . '%')
-            ->orWhere('sitioweb', 'like', '%' . $buscarpor . '%')
-            ->orWhere('dirección', 'like', '%' . $buscarpor . '%')
-            ->orderBy($orden, $direccion)
-            ->paginate(10);
-
-        return view('cliente.index', compact('clientes', 'buscarpor', 'direccionNombrecliente', 'direccionCorreo', 'direccionTelefono', 'direccionEmpresa', 'direccionSitioweb', 'direccionDireccion'))
-            ->with('i', (request()->input('page', 1) - 1) * $clientes->perPage());
+        return view('cliente.index', compact('clientes'));
     }
+
     /**
      * Show the form for creating a new resource.
      *

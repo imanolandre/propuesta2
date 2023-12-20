@@ -30,6 +30,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@tabler/icons-pdf": "^2.42.0"
+        "@tabler/icons-pdf": "^2.42.0",
+        "select2": "^4.1.0-rc.0"
     }
 }

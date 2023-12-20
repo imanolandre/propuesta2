@@ -22,39 +22,9 @@ class ProyectoController extends Controller
      */
     public function index(Request $request)
     {
-        $buscarpor = $request->input('buscarpor', '');
-        $orden = $request->input('orden', 'nombre');
-        $direccion = $request->input('direccion', 'asc');
+        $proyectos = Proyecto::all();
 
-        $direccionNombre = ($orden === 'nombre') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionTipo = ($orden === 'tipo') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionCotizacion = ($orden === 'cotización') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionCliente = ($orden === 'cliente->nombrecliente') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionFechaInicio = ($orden === 'fechainicio') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionFechaFin = ($orden === 'fechafin') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-
-        $proyectos = Proyecto::join('clientes', 'proyectos.cliente_id', '=', 'clientes.id')
-            ->select('proyectos.*', 'clientes.nombrecliente')
-            ->where(function ($query) use ($buscarpor) {
-                $query->where('proyectos.nombre', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('clientes.nombrecliente', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('proyectos.tipo', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('proyectos.cotización', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('proyectos.fechainicio', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('proyectos.fechafin', 'like', '%' . $buscarpor . '%');
-            });
-
-        // Aplicamos la ordenación
-        if ($orden == 'cliente->nombrecliente') {
-            $proyectos->orderBy('clientes.nombrecliente', $direccion);
-        } else {
-            $proyectos->orderBy($orden, $direccion);
-        }
-
-        $proyectos = $proyectos->paginate(10);
-
-        return view('proyecto.index', compact('proyectos', 'buscarpor', 'direccionNombre', 'direccionTipo', 'direccionCotizacion', 'direccionCliente', 'direccionFechaInicio', 'direccionFechaFin'))
-            ->with('i', (request()->input('page', 1) - 1) * $proyectos->perPage());
+        return view('proyecto.index', compact('proyectos'));
     }
 
 

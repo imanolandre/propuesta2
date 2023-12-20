@@ -1,3 +1,8 @@
+<div id="full-page-loader" class="full-page-loader">
+    <!-- Puedes ajustar la clase según la implementación de spinners de Tabler.io -->
+    <div class="spinner"></div>
+</div>
+<div id="content">
 @extends('tablar::page')
 
 @section('title')
@@ -50,31 +55,17 @@
             <div class="row row-deck row-cards">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body border-bottom py-3">
-                            <div class="d-flex">
-                                <form style="width: 70%;" method="GET" action="{{ route('cotizaciones.index') }}" class="ml-auto text-muted input-icon">
-                                    <input name="buscarpor" type="text" class="form-control" placeholder="Buscar…" value="{{ $buscarpor }}"/>
-                                    <span class="input-icon-addon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <circle cx="10" cy="10" r="7" />
-                                                <line x1="21" y1="21" x2="15" y2="15" />
-                                            </svg>
-                                    </span>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-vcenter datatable">
+                        <div class="card-body border-bottom py-3 table-responsive">
+                            <table style="margin-top: 55px; font-size:13px;" id="search-cotizaciones" class="table table-vcenter datatable">
                                 <thead>
                                 <tr>
-                                    <th class="w-1">No.</th>
-                                    <th><a href="{{ route('cotizaciones.index', ['orden' => 'cliente', 'direccion' => $direccionCliente, 'buscarpor' => $buscarpor]) }}">Cliente</a></th>
-                                    <th><a href="{{ route('cotizaciones.index', ['orden' => 'servicio', 'direccion' => $direccionServicio, 'buscarpor' => $buscarpor]) }}">Servicio</a></th>
-                                    <th><a href="{{ route('cotizaciones.index', ['orden' => 'planes', 'direccion' => $direccionPlanes, 'buscarpor' => $buscarpor]) }}">Planes</a></th>
-                                    <th><a href="{{ route('cotizaciones.index', ['orden' => 'importe', 'direccion' => $direccionImporte, 'buscarpor' => $buscarpor]) }}">Importe $</a></th>
-                                    <th><a href="{{ route('cotizaciones.index', ['orden' => 'descuento', 'direccion' => $direccionDescuento, 'buscarpor' => $buscarpor]) }}">Descuento $</a></th>
-                                    <th><a href="{{ route('cotizaciones.index', ['orden' => 'documento', 'direccion' => $direccionDocumento, 'buscarpor' => $buscarpor]) }}">Documento</a></th>
+                                    <th class="w-1"><a class="table-header">No.</a></th>
+                                    <th><a class="table-header">Cliente</a></th>
+                                    <th><a class="table-header">Servicio</a></th>
+                                    <th><a class="table-header">Planes</a></th>
+                                    <th><a class="table-header">Importe $</a></th>
+                                    <th><a class="table-header">Descuento $</a></th>
+                                    <th><a class="table-header">Documento</a></th>
                                     <th class="w-1"></th>
                                 </tr>
                                 </thead>
@@ -129,9 +120,6 @@
 
                             </table>
                         </div>
-                       <div class="card-footer d-flex align-items-center">
-                            {!! $cotizaciones->links('tablar::pagination') !!}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -159,4 +147,95 @@
             });
         }
     </script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<script>
+    $(document).ready(function () {
+        new DataTable('#search-cotizaciones', {
+            responsive: true,
+            autoWidth: false,
+            language: {
+                searchPlaceholder: "Buscar..."
+            }
+        });
+    });
+</script>
 @endsection
+</div>
+<style>
+    .table-header {
+        color: #1b4faf; /* Color azul que mencionaste */
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 11px;
+    }
+    /* Estilo para Show entries */
+div.dataTables_length label {
+    display: none;
+    visibility: hidden;
+}
+/* Estilo para Search */
+div.dataTables_filter label {
+    position: absolute;
+    left: 20;
+    color: #ffffff00; /* Color azul que mencionaste */
+    width: 67%;
+    margin-top: -20px;
+}
+.dataTables_filter input {
+        width: 100%;
+        height: 39px;
+        font-size: 14px;
+        background: #ffffff;
+        border-radius: 4px;
+        text-indent: 10px;
+}
+div.dataTables_paginate {
+    margin-top: 20px; /* Ajusta este valor según sea necesario */
+}
+div.dataTables_info {
+    display: none;
+}
+</style>
+<style>
+    /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
+#full-page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Estilos del Spinner */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #102b5e; /* Puedes ajustar el color según el esquema de colores de tu aplicación */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animación del Spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+</style>
+<script>
+    // Ocultar el Spinner cuando la página se carga completamente
+    window.addEventListener('load', function () {
+        document.getElementById('full-page-loader').style.display = 'none';
+    });
+</script>

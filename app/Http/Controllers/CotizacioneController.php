@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+
 /**
  * Class CotizacioneController
  * @package App\Http\Controllers
@@ -72,30 +73,38 @@ class CotizacioneController extends Controller
         Carbon::setLocale('es');
         // Obtén la fecha actual con el formato deseado (Nov-28-23)
         $fechaActual = now()->format('M-d-y');
+        $fechaFolio = now()->format('M');
 
         // Concatena las partes para formar el nombre del archivo
         $nombreArchivo = "COT-{$abreviaturaServicio}-{$nombreCliente}-{$fechaActual}";
+        $folio = "COT-{$fechaFolio}";
 
         // Obtener importe, descuento e importe adicional del formulario
         $importe = floatval($request->input('importe'));
         $descuento = floatval($request->input('descuento'));
-        $importeAdicional = floatval($request->input('importeadicional'));
+        $importeAdicional1 = number_format(floatval($request->input('importeadicional1')), 2, '.', '');
+        $importeAdicional2 = number_format(floatval($request->input('importeadicional2')), 2, '.', '');
+        $importeAdicional3 = number_format(floatval($request->input('importeadicional3')), 2, '.', '');
+        $importeAdicional4 = number_format(floatval($request->input('importeadicional4')), 2, '.', '');
+        $importeAdicional5 = number_format(floatval($request->input('importeadicional5')), 2, '.', '');
+        $importeAdicionalTotal = $importeAdicional1+$importeAdicional2+$importeAdicional3+$importeAdicional4+$importeAdicional5;
 
         // Calcular el total
         $total = $importe;
 
         // Si importe adicional no está vacío, agregarlo al total y restar el descuento
-        if (!empty($importeAdicional)) {
-            $total += $importeAdicional;
+        if (!empty($importeAdicionalTotal)) {
+            $total += $importeAdicionalTotal;
             $total -= $descuento;
         } else {
             // Si importe adicional está vacío, restar el descuento al total
             $total -= $descuento;
         }
         // Calcular anticipoadi solo si hay importe adicional
-        $anticipoadi = (!empty($importeAdicional)) ? $importeAdicional / 2 : 0;
+        $anticipoadi = (!empty($importeAdicionalTotal)) ? $importeAdicionalTotal / 2 : 0;
 
         $anticipo = $total / 2;
+        $anticipopr = number_format(($importe - $descuento) / 2, 2, '.', '');
 
         // Crear la cotización
         $cotizacione = Cotizacione::create($request->all() + [
@@ -103,10 +112,15 @@ class CotizacioneController extends Controller
             'anticipo' => number_format($anticipo, 2, '.', ''), // Formatear anticipo con 2 decimales
             'anticipoadi' => number_format($anticipoadi, 2, '.', ''), // Formatear anticipoadi con 2 decimales
             'anticipototal' => number_format($anticipo, 2, '.', ''), // Inicialmente anticipototal es igual a anticipo
+            'importeadicional1' => $importeAdicional1,
+            'importeadicional2' => $importeAdicional2,
+            'importeadicional3' => $importeAdicional3,
+            'importeadicional4' => $importeAdicional4,
+            'importeadicional5' => $importeAdicional5,
         ]);
 
         // Generate the PDF
-        $pdf = PDF::loadView('cotizacione.cotizacion', compact('cotizacione', 'nombreArchivo'));
+        $pdf = PDF::loadView('cotizacione.cotizacion', compact('cotizacione', 'nombreArchivo','anticipopr','folio'));
 
         // Save the PDF in the public/archivo/documentos folder
         $pdfPath = "archivo/documentos/{$nombreArchivo}.pdf";
@@ -133,8 +147,8 @@ class CotizacioneController extends Controller
     {
         $cotizacione = Cotizacione::find($id);
         $nombreArchivo = "COT-{$cotizacione->abreviatura_servicio}-{$cotizacione->cliente}-{$cotizacione->fecha_actual}";
-
-        return view('cotizacione.show', compact('cotizacione','nombreArchivo'));
+        $anticipopr = "{$cotizacione->anticipopr}";
+        return view('cotizacione.show', compact('cotizacione','nombreArchivo','anticipopr'));
     }
 
     /**
@@ -149,7 +163,6 @@ class CotizacioneController extends Controller
 
         return view('cotizacione.edit', compact('cotizacione'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -165,24 +178,38 @@ class CotizacioneController extends Controller
 
         // Obtén el nombre del cliente
         $nombreCliente = $request->input('cliente');
-
-        Carbon::setLocale('es');
         // Obtén la fecha actual con el formato deseado (Nov-28-23)
-        $fechaActual = now()->format('M-d-y');
+        $fechaActual = Carbon::now()->locale('es_ES')->isoFormat('MM-d-YY');
 
+        $fechaFolio = now()->format('M');
+        $folio = "COT-{$fechaFolio}";
         // Concatena las partes para formar el nombre del archivo
         $nombreArchivo = "COT-{$abreviaturaServicio}-{$nombreCliente}-{$fechaActual}";
 
         // Obtener importe y descuento del formulario
         $importe = floatval($request->input('importe'));
         $descuento = floatval($request->input('descuento'));
+        $importeAdicional1 = number_format(floatval($request->input('importeadicional1')), 2, '.', '');
+        $importeAdicional2 = number_format(floatval($request->input('importeadicional2')), 2, '.', '');
+        $importeAdicional3 = number_format(floatval($request->input('importeadicional3')), 2, '.', '');
+        $importeAdicional4 = number_format(floatval($request->input('importeadicional4')), 2, '.', '');
+        $importeAdicional5 = number_format(floatval($request->input('importeadicional5')), 2, '.', '');
+        $importeAdicionalTotal = $importeAdicional1+$importeAdicional2+$importeAdicional3+$importeAdicional4+$importeAdicional5;
+        $total = $importe;
 
-        // Calcular el total
-        $total = $importe - $descuento;
+        // Si importe adicional no está vacío, agregarlo al total y restar el descuento
+        if (!empty($importeAdicionalTotal)) {
+            $total += $importeAdicionalTotal;
+            $total -= $descuento;
+        } else {
+            // Si importe adicional está vacío, restar el descuento al total
+            $total -= $descuento;
+        }
+        // Calcular anticipoadi solo si hay importe adicional
+        $anticipoadi = (!empty($importeAdicionalTotal)) ? $importeAdicionalTotal / 2 : 0;
 
-        // Calcular el anticipo
         $anticipo = $total / 2;
-
+        $anticipopr = number_format(($importe - $descuento) / 2, 2, '.', '');
         // Formatear importe, descuento y anticipo con 2 decimales
         $importeFormateado = number_format($importe, 2, '.', '');
         $descuentoFormateado = number_format($descuento, 2, '.', '');
@@ -190,13 +217,19 @@ class CotizacioneController extends Controller
 
         // Actualizar la cotización con los nuevos valores
         $cotizacione->update(array_merge($request->all(), [
-            'importe' => $importeFormateado,
-            'descuento' => $descuentoFormateado,
-            'anticipo' => $anticipoFormateado,
+            'total' => number_format($total, 2, '.', ''), // Formatear total con 2 decimales
+            'anticipo' => number_format($anticipo, 2, '.', ''), // Formatear anticipo con 2 decimales
+            'anticipoadi' => number_format($anticipoadi, 2, '.', ''), // Formatear anticipoadi con 2 decimales
+            'anticipototal' => number_format($anticipo, 2, '.', ''), // Inicialmente anticipototal es igual a anticipo
+            'importeadicional1' => $importeAdicional1,
+            'importeadicional2' => $importeAdicional2,
+            'importeadicional3' => $importeAdicional3,
+            'importeadicional4' => $importeAdicional4,
+            'importeadicional5' => $importeAdicional5,
         ]));
 
         // Generate the updated PDF
-        $pdf = PDF::loadView('cotizacione.cotizacion', compact('cotizacione', 'nombreArchivo'));
+        $pdf = PDF::loadView('cotizacione.cotizacion', compact('cotizacione', 'nombreArchivo','anticipopr','folio'));
 
         // Save the updated PDF in the public/archivo/documentos folder
         $pdfPath = "archivo/documentos/{$nombreArchivo}.pdf";
@@ -208,7 +241,6 @@ class CotizacioneController extends Controller
         Alert::success('ACTUALIZADO', 'Cotización actualizado correctamente');
         return redirect()->route('cotizaciones.index');
     }
-
 
     /**
      * @param int $id

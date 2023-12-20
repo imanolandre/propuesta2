@@ -1,3 +1,8 @@
+<div id="full-page-loader" class="full-page-loader">
+    <!-- Puedes ajustar la clase según la implementación de spinners de Tabler.io -->
+    <div class="spinner"></div>
+</div>
+<div id="content">
 @extends('tablar::page')
 @section('title', 'Ver Proyecto')
 @section('content')
@@ -22,7 +27,7 @@
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             Retroceder
                         </a>
-                        <a href="{{ route('proyectos.index') }}" class="btn btn-vk d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
+                        <a href="{{ route('proyectos.index') }}" class="btn btn-vk d-sm-none btn-icon">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse icon-tabler icon-tabler-caret-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6l-6 6l6 6v-12" /></svg>
                         </a>
@@ -219,5 +224,42 @@
     }
 </script>
 @endsection
+</div>
+<style>
+    /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
+#full-page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
 
+/* Estilos del Spinner */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #102b5e; /* Puedes ajustar el color según el esquema de colores de tu aplicación */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
 
+/* Animación del Spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+</style>
+<script>
+    // Ocultar el Spinner cuando la página se carga completamente
+    window.addEventListener('load', function () {
+        document.getElementById('full-page-loader').style.display = 'none';
+    });
+</script>

@@ -1,3 +1,8 @@
+<div id="full-page-loader" class="full-page-loader">
+    <!-- Puedes ajustar la clase según la implementación de spinners de Tabler.io -->
+    <div class="spinner"></div>
+</div>
+<div id="content">
 @extends('tablar::page')
 
 @section('title')
@@ -24,12 +29,12 @@
                         <!-- Botón de exportar a Excel -->
                         <a href="{{ route('pago.filtrar-fechas') }}" class="btn btn-cyan d-none d-sm-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/download -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-tada icon-tabler icon-tabler-report-money" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" /><path d="M12 17v1m0 -8v1" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-icon icon-tabler icon-tabler-report-money" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" /><path d="M12 17v1m0 -8v1" /></svg>
                             Registrar Corte
                         </a>
                         <a href="{{ route('pago.filtrar-fechas') }}" class="btn btn-cyan d-sm-none btn-icon">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-tada icon-tabler icon-tabler-report-money" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" /><path d="M12 17v1m0 -8v1" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-icon icon-tabler icon-tabler-report-money" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" /><path d="M12 17v1m0 -8v1" /></svg>
                         </a>
                         <a href="{{ route('pagos.create') }}" class="btn btn-primary d-none d-sm-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -60,32 +65,18 @@
             <div class="row row-deck row-cards">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body border-bottom py-3">
-                            <div class="d-flex">
-                                <form style="width: 70%;" method="GET" action="{{ route('pagos.index') }}" class="ml-auto text-muted input-icon">
-                                    <input name="buscarpor" type="text" class="form-control" placeholder="Buscar…" value="{{ $buscarpor }}"/>
-                                    <span class="input-icon-addon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <circle cx="10" cy="10" r="7" />
-                                                <line x1="21" y1="21" x2="15" y2="15" />
-                                            </svg>
-                                    </span>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-vcenter datatable">
+                        <div class="card-body border-bottom py-3 table-responsive">
+                            <table style="margin-top: 55px; font-size:13px;" id="search-pagos" class="table table-vcenter datatable">
                                 <thead>
                                 <tr>
-                                        <th class="w-1">No.</th>
-										<th><a href="{{ route('pagos.index', ['orden' => 'fecha', 'direccion' => $direccionFecha]) }}">Fecha</a></th>
-										<th><a href="{{ route('pagos.index', ['orden' => 'proyecto.nombre', 'direccion' => $direccionNombreProyecto]) }}">Nombre del Proyecto</a></th>
-										<th><a href="{{ route('pagos.index', ['orden' => 'cliente', 'direccion' => $direccionCliente]) }}">Nombre del Cliente</a></th>
-										<th><a href="{{ route('pagos.index', ['orden' => 'monto', 'direccion' => $direccionMonto]) }}">Monto $</a></th>
-										<th><a href="{{ route('pagos.index', ['orden' => 'gastosingreso', 'direccion' => $direccionGastosIngreso]) }}">Gastos $</a></th>
-										<th><a href="{{ route('pagos.index', ['orden' => 'diezmo', 'direccion' => $direccionDiezmo]) }}">Diezmo $</a></th>
-										<th><a href="{{ route('pagos.index', ['orden' => 'libre', 'direccion' => $direccionLibre]) }}">Libre $</a></th>
+                                        <th class="w-1"><a class="table-header">No.</a></th>
+										<th><a class="table-header">Fecha</a></th>
+										<th><a class="table-header">Nombre del Proyecto</a></th>
+										<th><a class="table-header">Nombre del Cliente</a></th>
+										<th><a class="table-header">Monto $</a></th>
+										<th><a class="table-header">Gastos $</a></th>
+										<th><a class="table-header">Diezmo $</a></th>
+										<th><a class="table-header">Libre $</a></th>
                                     <th class="w-1"></th>
                                 </tr>
                                 </thead>
@@ -171,4 +162,95 @@
             });
         }
     </script>
-@endsection
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+ <script>
+    $(document).ready(function () {
+        new DataTable('#search-pagos', {
+            responsive: true,
+            autoWidth: false,
+            language: {
+                searchPlaceholder: "Buscar..."
+            }
+        });
+    });
+ </script>
+ @endsection
+ </div>
+ <style>
+     .table-header {
+         color: #1b4faf; /* Color azul que mencionaste */
+         font-weight: bold;
+         cursor: pointer;
+         font-size: 11px;
+     }
+     /* Estilo para Show entries */
+ div.dataTables_length label {
+     display: none;
+     visibility: hidden;
+ }
+ /* Estilo para Search */
+ div.dataTables_filter label {
+     position: absolute;
+     left: 20;
+     color: #ffffff00; /* Color azul que mencionaste */
+     width: 67%;
+     margin-top: -20px;
+ }
+ .dataTables_filter input {
+         width: 100%;
+         height: 39px;
+         font-size: 14px;
+         background: #ffffff;
+         border-radius: 4px;
+         text-indent: 10px;
+ }
+ div.dataTables_paginate {
+     margin-top: 20px; /* Ajusta este valor según sea necesario */
+ }
+ div.dataTables_info {
+     display: none;
+ }
+ </style>
+<style>
+    /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
+#full-page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Estilos del Spinner */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #102b5e; /* Puedes ajustar el color según el esquema de colores de tu aplicación */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animación del Spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+</style>
+<script>
+    // Ocultar el Spinner cuando la página se carga completamente
+    window.addEventListener('load', function () {
+        document.getElementById('full-page-loader').style.display = 'none';
+    });
+</script>

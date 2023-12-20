@@ -23,10 +23,18 @@ return new class extends Migration
             $table->string('total')->nullable();
             $table->string('anticipo')->nullable();
             $table->string('anticipoadi')->nullable();
-            $table->string('anticipototal')->nullable(); // Campo opcional
-            $table->string('servicioadicional')->nullable(); // Campo opcional
-            $table->string('importeadicional')->nullable(); // Campo opcional
-            $table->string('documento')->nullable(); // Campo opcional
+            $table->string('anticipototal')->nullable();
+            $table->string('servicioadicional1')->nullable();
+            $table->string('importeadicional1')->nullable();
+            $table->string('servicioadicional2')->nullable();
+            $table->string('importeadicional2')->nullable();
+            $table->string('servicioadicional3')->nullable();
+            $table->string('importeadicional3')->nullable();
+            $table->string('servicioadicional4')->nullable();
+            $table->string('importeadicional4')->nullable();
+            $table->string('servicioadicional5')->nullable();
+            $table->string('importeadicional5')->nullable();
+            $table->string('documento')->nullable();
             $table->timestamps();
         });
     }
