@@ -21,7 +21,7 @@
                         Vista
                     </div>
                     <h2 class="page-title">
-                        {{ __('Cotizacione ') }}
+                        {{ __('Cotizaciones ') }}
                     </h2>
                 </div>
                 <!-- Page title actions -->

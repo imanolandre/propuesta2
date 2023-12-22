@@ -30,17 +30,14 @@
                     <div class="mb-2">
                         <label class="form-label">
                             Contraseña
-                            <span class="form-label-description">
-                    <a href="{{route('password.request')}}">olvidaste la contraseña</a>
-                  </span>
                         </label>
                         <div class="input-group input-group-flat">
-                            <input type="password" name="password"
+                            <input type="password" name="password" id="passwordField"
                                    class="form-control @error('password') is-invalid @enderror"
                                    placeholder="Introduza su Contraseña"
                                    autocomplete="off">
                             <span class="input-group-text">
-                    <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                    <a href="#" id="showPassword" class="link-secondary" title="Ver contraseña" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                            stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12"
@@ -69,6 +66,20 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordField = document.getElementById('passwordField');
+            const showPassword = document.getElementById('showPassword');
+
+            showPassword.addEventListener('click', function () {
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                } else {
+                    passwordField.type = 'password';
+                }
+            });
+        });
+    </script>
 @endsection
 </div>
 <style>
