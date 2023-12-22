@@ -1,8 +1,11 @@
 <div id="page-loader" class="page-loader" style="display: none;">
     <div class="spinner"></div>
-    <div id="loading-text" class="loading-text">Guardando</div>
+    <div id="loading-text" class="loading-text texto">Guardando</div>
 </div>
 <div id="content">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
@@ -11,7 +14,7 @@
         <div class="form-group mb-3">
             <label class="form-label required">   {{ Form::label('nombre del proyecto') }}</label>
             <div>
-                {{ Form::text('nombre', $proyecto->nombre, ['class' => 'form-control' .
+                {{ Form::text('nombre', $proyecto->nombre, ['class' => 'form-control texto' .
                 ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
                 {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
             </div>
@@ -26,7 +29,7 @@
                     'Empresarial' => 'Empresarial',
                     'Corporativo' => 'Corporativo',
                     'Escalable' => 'Escalable',
-                    ], $proyecto->tipo, ['class' => 'form-control form-select' . ($errors->has('tipo') ? ' is-invalid' : ''),'placeholder' => 'Seleccione el tipo de proyecto']) }}
+                    ], $proyecto->tipo, ['class' => 'form-control form-select texto' . ($errors->has('tipo') ? ' is-invalid' : ''),'placeholder' => 'Seleccione']) }}
                 {!! $errors->first('tipo', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
@@ -42,7 +45,7 @@
                     'Marketing digital' => 'Marketing digital',
                     'Desarrollo de Software' => 'Desarrollo de Software',
                     'Aplicaciones Móviles' => 'Aplicaciones Móviles',
-                    ], $proyecto->cotización, ['class' => 'form-control form-select' . ($errors->has('cotización') ? ' is-invalid' : ''),'placeholder' => 'Seleccione en tipo de servicio']) }}
+                    ], $proyecto->cotización, ['class' => 'form-control form-select texto' . ($errors->has('cotización') ? ' is-invalid' : ''),'placeholder' => 'Seleccione']) }}
                 {!! $errors->first('cotización', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
@@ -51,7 +54,7 @@
         <div class="form-group mb-3">
             <label class="form-label required">{{ Form::label('cliente_id', 'Nombre del Cliente') }}</label>
             <div>
-                {{ Form::select('cliente_id', $clientes, $proyecto->cliente_id, ['class' => 'tom-select form-control form-select select2' . ($errors->has('cliente_id') ? ' is-invalid' : ''),'placeholder' => 'Seleccione en tipo de servicio'])}}
+                {{ Form::select('cliente_id', $clientes, $proyecto->cliente_id, ['class' => 'texto tom-select form-control form-select select2' . ($errors->has('cliente_id') ? ' is-invalid' : ''),'placeholder' => 'Seleccione en tipo de servicio'])}}
                 {!! $errors->first('cliente_id', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
@@ -60,7 +63,7 @@
         <div class="form-group mb-3">
             <label class="form-label required">{{ Form::label('fechainicio', 'Fecha de Inicio') }}</label>
             <div>
-                {{ Form::date('fechainicio', $proyecto->fechainicio, ['class' => 'form-control' .
+                {{ Form::date('fechainicio', $proyecto->fechainicio, ['class' => 'form-control texto' .
                 ($errors->has('fechainicio') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de Inicio']) }}
                 {!! $errors->first('fechainicio', '<div class="invalid-feedback">:message</div>') !!}
             </div>
@@ -70,7 +73,7 @@
         <div class="form-group mb-3">
             <label class="form-label required">{{ Form::label('fechafin', 'Fecha de Fin') }}</label>
             <div>
-                {{ Form::date('fechafin', $proyecto->fechafin, ['class' => 'form-control' . ($errors->has('fechafin') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de Fin']) }}
+                {{ Form::date('fechafin', $proyecto->fechafin, ['class' => 'form-control texto' . ($errors->has('fechafin') ? ' is-invalid' : ''), 'placeholder' => 'Fecha de Fin']) }}
                 {!! $errors->first('fechafin', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
@@ -80,7 +83,7 @@
         <div class="form-group mb-3">
             <label class="form-label required">{{ Form::label('prototipo') }}</label>
             <div>
-                {{ Form::file('prototipo', ['class' =>'form-control form-label' . ($errors->has('prototipo') ? ' is-invalid' : '')]) }}
+                {{ Form::file('prototipo', ['class' =>'form-control form-label texto' . ($errors->has('prototipo') ? ' is-invalid' : '')]) }}
                 {!! $errors->first('prototipo', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             @if($proyecto->prototipo)
@@ -92,7 +95,7 @@
         <div class="form-group mb-3">
             <label class="form-label required">{{ Form::label('requerimientos') }}</label>
             <div>
-                {{ Form::file('requerimientos', ['class' =>'form-control form-label' . ($errors->has('requerimientos') ? ' is-invalid' : '')]) }}
+                {{ Form::file('requerimientos', ['class' =>'form-control form-label texto' . ($errors->has('requerimientos') ? ' is-invalid' : '')]) }}
                 {!! $errors->first('requerimientos', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             @if($proyecto->requerimientos)
@@ -103,7 +106,7 @@
         <div class="form-group mb-3">
             <label class="form-label required">   {{ Form::label('descripción') }}</label>
             <div>
-                {{ Form::textarea('descripción', $proyecto->descripción, ['class' => 'form-control' .
+                {{ Form::textarea('descripción', $proyecto->descripción, ['class' => 'form-control texto' .
                 ($errors->has('descripción') ? ' is-invalid' : ''), 'placeholder' => 'Completar descripción ...']) }}
                 {!! $errors->first('descripción', '<div class="invalid-feedback">:message</div>') !!}
             </div>
@@ -111,11 +114,11 @@
         <div class="form-footer">
             <div class="text-end">
                 <div class="d-flex">
-                    <button type="reset" href="#" class="btn btn-secondary">
+                    <button type="reset" href="#" class="btn btn-secondary texto">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" /><path d="M5.63 7.16l0 .01" /><path d="M4.06 11l0 .01" /><path d="M4.63 15.1l0 .01" /><path d="M7.16 18.37l0 .01" /><path d="M11 19.94l0 .01" /></svg>
                         Limpiar
                     </button>
-                    <button type="submit" class="btn btn-primary ms-auto ajax-submit" onclick="submitForm()">
+                    <button type="submit" class="btn btn-primary ms-auto ajax-submit texto" onclick="submitForm()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tada icon-tabler icon-tabler-pencil-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /><path d="M15 19l2 2l4 -4" /></svg>
                         Guardar
                     </button>
@@ -138,6 +141,12 @@
 </script>
 </div>
 <style>
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+    .texto{
+        font-family: 'Poppins', sans-serif;
+    }
     .tom-select{
         background-color: #ffffff;
         color: #000000;

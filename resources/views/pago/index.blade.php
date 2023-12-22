@@ -10,6 +10,9 @@
 @endsection
 
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class="page-header d-print-none">
         <div class="container-xl">
@@ -27,7 +30,7 @@
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
                         <!-- Botón de exportar a Excel -->
-                        <a href="{{ route('pago.filtrar-fechas') }}" class="btn btn-cyan d-none d-sm-inline-block">
+                        <a href="{{ route('pago.filtrar-fechas') }}" class="btn btn-cyan d-none d-sm-inline-block texto">
                             <!-- Download SVG icon from http://tabler-icons.io/i/download -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-icon icon-tabler icon-tabler-report-money" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" /><path d="M12 17v1m0 -8v1" /></svg>
                             Registrar Corte
@@ -36,7 +39,7 @@
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-icon icon-tabler icon-tabler-report-money" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" /><path d="M12 17v1m0 -8v1" /></svg>
                         </a>
-                        <a href="{{ route('pagos.create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                        <a href="{{ route('pagos.create') }}" class="btn btn-primary d-none d-sm-inline-block texto">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse" width="24" height="24"
                                  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -199,14 +202,16 @@
      margin-top: -20px;
  }
  .dataTables_filter input {
-         width: 100%;
-         height: 39px;
-         font-size: 14px;
-         background: #ffffff;
-         border-radius: 4px;
-         text-indent: 10px;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 39px;
+    font-size: 14px;
+    background: #ffffff;
+    border-radius: 4px;
+    text-indent: 10px;
  }
  div.dataTables_paginate {
+    font-family: 'Poppins', sans-serif;
      margin-top: 20px; /* Ajusta este valor según sea necesario */
  }
  div.dataTables_info {
@@ -214,6 +219,12 @@
  }
  </style>
 <style>
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+    .texto{
+        font-family: 'Poppins', sans-serif;
+    }
     /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
 #full-page-loader {
     position: fixed;

@@ -8,6 +8,9 @@
 @section('title', 'Editar Pago')
 
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <!-- Page header -->
     <div class="page-header d-print-none">
         <div class="container-xl">
@@ -24,7 +27,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('pagos.index') }}" class="btn btn-danger d-none d-sm-inline-block">
+                        <a href="{{ route('pagos.index') }}" class="btn btn-danger d-none d-sm-inline-block texto">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                             Cancelar
@@ -67,6 +70,12 @@
 @endsection
 </div>
 <style>
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+    .texto{
+        font-family: 'Poppins', sans-serif;
+    }
     /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
 #full-page-loader {
     position: fixed;

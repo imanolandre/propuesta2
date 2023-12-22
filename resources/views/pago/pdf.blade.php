@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Reporte de Pagos {{ $fechaEmision }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <style>
-        .texto{
-            font-family:sans-serif;
-            font-weight:inherit;
+        * {
+            font-family: 'Poppins', sans-serif;
         }
+        .fuente {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .texto{
+            margin-bottom: -10px;
+        }
+        .texto1{
+            margin-bottom: -8px;
+        }
+
         .texto-titulo{
             font-size: 24px;
             margin-top: -5px;
@@ -15,7 +28,7 @@
         }
         .texto-blo1{
             font-size: 12px;
-            margin-top: 35px;
+            margin-top: 20px;
         }
         .texto-blo2{
             position: absolute;
@@ -24,24 +37,28 @@
             top: 8%;
         }
         .texto-blo3{
+            width: 240px;
+            background-color: #ebeaea77;
+            margin-top: 10px;
             font-size: 12px;
         }
         .texto-tabla{
+            margin-top: 10px;
             font-size: 12px;
         }
         .separador{
-            font-size: 32px;
+            font-family: none;
+            font-size: 52px;
+            margin-top: -35px;
         }
         .separadores{
+            font-family: none;
             font-size: 10px;
             margin-top: -4px;
             color: #757575;
         }
-        .texto-ss{
-            margin-top:-2px;
-        }
         .pdf-logo{
-            width: 200px;
+            width: 220px;
             margin-top: -10px;
         }
         .ingreso{
@@ -50,12 +67,12 @@
             font-size: 12px;
             background-color: #000;
             color: #fff;
-            padding-top: 5px;
             padding-bottom: 5px;
             width: 200px;
             right: 0;
         }
         .valores{
+            font-family: none;
             position: absolute;
             color: #e4e4e4;
             font-size: 32px;
@@ -70,6 +87,7 @@
             border-bottom: 1px solid #757575;
         }
         .separadores-datos{
+            font-family: none;
             position: absolute;
             font-size: 8px;
             margin-top: -6px;
@@ -79,47 +97,47 @@
     </style>
 </head>
 <body>
-    <h1 class="texto texto-titulo">Informe de ingresos</h1>
+    <h1 class=" texto-titulo">Informe de ingresos</h1>
     <img class="pdf-logo" src="assets/logo-nuevo.png">
-    <div class="texto">
+    <div>
         <div class="texto-blo1">
-            <div>Desarrollalab - Soluciones Tecnológicas</div>
-            <div>Web: www.desarrollalab.com</div>
-            <div>Tel: +52 777 259 03 65</div>
-            <div>CEO | Sinai Esmeralda García Marín</div>
-            <div>CEO | Demetrio Del Carmen Gómez</div>
+            <div class="texto">Desarrollalab - Soluciones Tecnológicas</div>
+            <div class="texto">Web: www.desarrollalab.com</div>
+            <div class="texto">Tel: +52 777 259 03 65</div>
+            <div class="texto">CEO | Sinai Esmeralda García Marín</div>
+            <div class="texto">CEO | Demetrio Del Carmen Gómez</div>
         </div>
         <div class="texto-blo2">
-            <div>Folio: RE-PA-{{now()->format('h') }}</div>
-            <div>Fecha de emisión: {{ $fechaEmision }}</div>
+            <div class="texto">Folio: RE-PA-{{now()->format('h') }}</div>
+            <div class="texto">Fecha de emisión: {{ $fechaEmision }}</div>
         </div>
-        <div class="separador">——————————————————————</div>
-        <div class="texto-blo3">
-            <div class="texto-ss">De: {{ \Carbon\Carbon::parse($fechaInicio)->format('d-m-Y') }} a {{ \Carbon\Carbon::parse($fechaFin)->format('d-m-Y') }}</div>
-            <div class="separadores">—————————————————————</div>
-            <div class="texto-ss">Ingreso bruto: ${{ number_format($ingresoBruto, 2) }}</div>
-            <div class="separadores">—————————————————————</div>
-            <div class="texto-ss">Gastos: ${{ number_format($gastototal, 2) }}</div>
-            <div class="separadores">—————————————————————</div>
-            <div class="texto-ss">Diezmo pendiente: ${{ number_format($diezmototal, 2) }}</div>
-            <div class="separadores">—————————————————————</div>
+        <div class="separador">___________________________</div>
+        <div class="texto1 texto-blo3">
+            <div class="texto1 texto-ss">De: {{ \Carbon\Carbon::parse($fechaInicio)->format('d-m-Y') }} a {{ \Carbon\Carbon::parse($fechaFin)->format('d-m-Y') }}</div>
+            <div class="texto1 separadores">————————————————————————</div>
+            <div class="texto1 texto-ss">Ingreso bruto: ${{ number_format($ingresoBruto, 2) }}</div>
+            <div class="texto1 separadores">————————————————————————</div>
+            <div class="texto1 texto-ss">Gastos: ${{ number_format($gastototal, 2) }}</div>
+            <div class="texto1 separadores">————————————————————————</div>
+            <div class="texto1 texto-ss">Diezmo pendiente: ${{ number_format($diezmototal, 2) }}</div>
+            <div class="separadores">————————————————————————</div>
             <div class="ingreso">Ingreso libre ${{ number_format($libretotal, 2) }}</div>
         </div>
-        <div style="margin-top: 15px;" class="separador">——————————————————————</div>
-        <div style="margin-top: 0px;" class="valores">——————————————————————</div>
+        <div style="margin-top: -10px;" class="separador">___________________________</div>
+        <div style="margin-top: 10px;" class="valores">——————————————————————</div>
     </div>
-    <table class="texto texto-tabla">
-        <thead>
-            <tr>
-                <th class="valores-tx">Cliente</th>
-                <th class="valores-tx">Fecha</th>
-                <th class="valores-tx">Gastos</th>
-                <th class="valores-tx">Diezmo</th>
-                <th class="valores-tx">Libre</th>
-                <th class="valores-tx">Monto</th>
-                <th class="valores-tx">Proyecto</th>
-                <th class="valores-tx">ConceptoGasto</th>
-                <th class="valores-tx">Metodopago</th>
+    <table class="texto-tabla ">
+        <thead class="fuente">
+            <tr class="fuente">
+                <th class="valores-tx"><div class="fuente">Cliente</div></th>
+                <th class="valores-tx"><div class="fuente">Fecha</div></th>
+                <th class="valores-tx"><div class="fuente">Gastos</div></th>
+                <th class="valores-tx"><div class="fuente">Diezmo</div></th>
+                <th class="valores-tx"><div class="fuente">Libre</div></th>
+                <th class="valores-tx"><div class="fuente">Monto</div></th>
+                <th class="valores-tx"><div class="fuente">Proyecto</div></th>
+                <th class="valores-tx"><div class="fuente">ConceptoGasto</div></th>
+                <th class="valores-tx"><div class="fuente">Metodopago</div></th>
             </tr>
         </thead>
         <tbody>

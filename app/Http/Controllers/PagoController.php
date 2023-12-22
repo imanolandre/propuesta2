@@ -166,8 +166,8 @@ class PagoController extends Controller
         }
 
         // Recalcular diezmo y libre después de la actualización
-        $monto = floatval($pago->monto);
-        $gastosingreso = floatval($pago->gastosingreso);
+        $monto = floatval($pagoData['monto']);  // Utilizar el monto actualizado del formulario
+        $gastosingreso = floatval($pagoData['gastosingreso']);  // Utilizar el gastosingreso actualizado del formulario
         $diezmo = ($monto - $gastosingreso) * 0.10;
         $pagoData['diezmo'] = number_format($diezmo, 2, '.', '');
         $libre = $monto - $gastosingreso - $diezmo;

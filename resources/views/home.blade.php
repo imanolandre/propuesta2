@@ -305,7 +305,7 @@
                                 colors: ['#fff']
                                 },
                                 title: {
-                                text: 'Cantidad de Tipos de proyecto por Servicio'
+                                text: 'Cantidad de tipos de Proyecto'
                                 },
                                 xaxis: {
                                 categories: ['Startup', 'Empresarial', 'Corporativo', 'Escalable'],

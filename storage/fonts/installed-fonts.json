@@ -1,0 +1,11 @@
+{
+    "poppins": {
+        "normal": "C:\\wamp64\\www\\propuesta2\\storage\\fonts\/poppins_normal_442dffd12abdf0df26c14405d3f49bfa",
+        "bold": "C:\\wamp64\\www\\propuesta2\\storage\\fonts\/poppins_bold_2d1c4b360c3ac297e98fc2cfd808a2cc",
+        "italic": "C:\\wamp64\\www\\propuesta2\\storage\\fonts\/poppins_italic_1ad90e53438b9573bebb0fe37dfde87c",
+        "500_italic": "C:\\wamp64\\www\\propuesta2\\storage\\fonts\/poppins_500_italic_0b33503413d15e2b0c2db57c393906ed",
+        "600_italic": "C:\\wamp64\\www\\propuesta2\\storage\\fonts\/poppins_600_italic_bd7beee89dec36870459c02bb03bc74e",
+        "500": "C:\\wamp64\\www\\propuesta2\\storage\\fonts\/poppins_500_6a6f5e017da7e062546fd806ab3b249c",
+        "600": "poppins_600_272b14b77a21dc5827f4570eff556c8f"
+    }
+}

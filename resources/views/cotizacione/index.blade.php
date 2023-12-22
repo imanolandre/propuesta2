@@ -10,6 +10,9 @@
 @endsection
 
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class="page-header d-print-none">
         <div class="container-xl">
@@ -26,7 +29,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('cotizaciones.create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                        <a href="{{ route('cotizaciones.create') }}" class="btn btn-primary d-none d-sm-inline-block texto">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse" width="24" height="24"
                                  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -187,14 +190,16 @@ div.dataTables_filter label {
     margin-top: -20px;
 }
 .dataTables_filter input {
-        width: 100%;
-        height: 39px;
-        font-size: 14px;
-        background: #ffffff;
-        border-radius: 4px;
-        text-indent: 10px;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 39px;
+    font-size: 14px;
+    background: #ffffff;
+    border-radius: 4px;
+    text-indent: 10px;
 }
 div.dataTables_paginate {
+    font-family: 'Poppins', sans-serif;
     margin-top: 20px; /* Ajusta este valor según sea necesario */
 }
 div.dataTables_info {
@@ -202,6 +207,12 @@ div.dataTables_info {
 }
 </style>
 <style>
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+    .texto{
+        font-family: 'Poppins', sans-serif;
+    }
     /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
 #full-page-loader {
     position: fixed;

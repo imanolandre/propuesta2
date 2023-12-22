@@ -8,6 +8,9 @@
 @section('title', 'Ver Pago')
 
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <!-- Page header -->
     <div class="page-header d-print-none">
         <div class="container-xl">
@@ -24,7 +27,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('pagos.index') }}" class="btn btn-vk d-none d-sm-inline-block">
+                        <a href="{{ route('pagos.index') }}" class="btn btn-vk d-none d-sm-inline-block texto">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse icon-tabler icon-tabler-caret-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6l-6 6l6 6v-12" /></svg>
                             Retroceder
                         </a>
@@ -93,7 +96,7 @@
                                     @if ($pago->adjunto)
                                     <div class="btn-list ml-2">
                                         <!-- Enlace para mostrar PDF en modal -->
-                                        <a href="#" onclick="mostrarImagen('{{ asset('archivo/adjunto/' . $pago->adjunto) }}');" class="btn btn-flickr d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#imagenModal">
+                                        <a href="#" onclick="mostrarImagen('{{ asset('archivo/adjunto/' . $pago->adjunto) }}');" class="btn btn-flickr d-none d-sm-inline-block texto" data-bs-toggle="modal" data-bs-target="#imagenModal">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tada icon-tabler icon-tabler-photo-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M11.5 21h-5.5a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" /><path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M20.2 20.2l1.8 1.8" /><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l2 2" /></svg>
                                             Ver
                                         </a>
@@ -160,6 +163,12 @@
 @endsection
 </div>
 <style>
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+    .texto{
+        font-family: 'Poppins', sans-serif;
+    }
     /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
 #full-page-loader {
     position: fixed;

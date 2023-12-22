@@ -78,10 +78,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $nombreArchivo }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <style>
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+        .fuente{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
         .texto{
-            font-family:sans-serif;
-            font-weight:inherit;
+            margin-bottom: -10px;
         }
         .pdf-logo{
             width: 220px;
@@ -107,8 +116,9 @@
             top: 8%;
         }
         .separador{
-            font-size: 50px;
-            margin-top: -30px;
+            font-family: none;
+            font-size: 52px;
+            margin-top: -40px;
         }
         .borde{
             border: 2px solid #000000;
@@ -118,27 +128,29 @@
         ul.two-columns {
             padding: 20px;
             margin-left: 20px;
+            margin-top: -10px;
         }
 
         ul.two-columns li {
-            margin-bottom: 10px;
+            margin-bottom: -6px;
         }
         .lista2{
             position: absolute;
-            right: 8%;
-            margin-top: -337px;
+            left: 51%;
+            top: 42.8%;
         }
         .certi{
             width: 210px;
             padding: 10px;
             margin-left: 50px;
-            margin-top: 25px;
+            margin-top: 30px;
+            margin-bottom: -15px;
         }
         .google{
             position: absolute;
-            right: 5%;
-            margin-top: -100px;
-            width: 260px;
+            right: 4%;
+            margin-top: -95px;
+            width: 255px;
         }
         table {
             width: 100%;
@@ -148,52 +160,54 @@
 
         td, th {
             border: 1px solid black;
-            padding: 8px;
+            padding: 5px;
+            padding-top: 2px;
             text-align: left;
         }
     </style>
 </head>
 <body>
-    <div class="page-body texto">
+    <div class="page-body">
         <div class="card-header">
             <h2 class="card-title" style="font-size: 28px;">{{ $cotizacione->servicio }} {{ $cotizacione->planes }}</h2>
         </div>
         <img class="pdf-logo" src="assets/logo-nuevo.png">
         <div class="texto-blo1">
-            <strong>Desarrollalab - Soluciones Tecnológicas</strong>
-            <div>Web: www.desarrollalab.com</div>
-            <div>Tel: +52 777 259 03 65</div>
-            <div>CEO | Sinai Esmeralda García Marín</div>
-            <div>CEO | Demetrio Del Carmen Gómez</div>
+            <div class="texto fuente">Desarrollalab - Soluciones Tecnológicas</div>
+            <div class="texto">Web: www.desarrollalab.com</div>
+            <div class="texto">Tel: +52 777 259 03 65</div>
+            <div class="texto">CEO | Sinai Esmeralda García Marín</div>
+            <div class="texto">CEO | Demetrio Del Carmen Gómez</div>
         </div>
         <div class="texto-blo2">
-            <div class="form-group">
-                <strong>Folio:{{ $folio }}-{{ str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT) }}</strong>
+            <div class="form-group texto">
+                <label class="fuente">Folio:</label>
+                {{ $folio }}-{{ str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT) }}
             </div>
-            <div class="form-group">
-                <strong>Fecha:</strong>
+            <div class="form-group texto">
+                <strong class="fuente">Fecha:</strong>
                 {{ now()->format('d/m/Y') }}
             </div>
-            <div class="form-group">
-                <strong>Cliente:</strong>
+            <div class="form-group texto">
+                <strong class="fuente">Cliente:</strong>
                 {{ $cotizacione->cliente }}
             </div>
         </div>
-        <div class="separador">——————————————</div>
-        <h3 style="text-align: center; margin-top: -10px;">Cotización | Desarrollo de {{ $cotizacione->servicio }}</h3>
-        <div class="form-group borde" style="margin-top:-10px; height: 3em; overflow: hidden;">
-            <strong>DESCRIPCIÓN DEL PROYECTO:</strong>
+        <div class="separador">___________________________</div>
+        <h3 class="fuente" style="text-align: center; margin-top: -3px;">Cotización | Desarrollo de {{ $cotizacione->servicio }}</h3>
+        <div class="form-group borde" style="margin-top:-10px; height: 4em; overflow: hidden; line-height: 1;">
+            <strong class="fuente">DESCRIPCIÓN DEL PROYECTO:</strong>
             {{ $cotizacione->descripcion }}
         </div>
         <div class="form-group borde" style="margin-top:-2px;">
-            <div class="form-group">
+            <div class="texto form-group">
                 <strong>Servicio: {{ $cotizacione->servicio }}</strong>
             </div>
             <div class="form-group" style="margin-top:2px;">
                 <strong>Plan:</strong>
                 {{ $cotizacione->planes }}
             </div>
-            <div class="form-group" style="margin-top:15px;">
+            <div class="form-group" style="margin-top:10px;">
                 <strong>Características y beneficios del plan Empresarial</strong>
             </div>
             <div class="form-group">
@@ -303,20 +317,21 @@
             </div>
         </div>
         <div class="form-group borde" style="margin-top:-2px;">
-            <div class="form-group" style="margin-top:2px;">
+            <div class="texto form-group" style="margin-top:2px;line-height: 1;">
                 <strong>Optimización web:</strong>
                 Optimización web se desarrollará el proyecto utilizando las mejores prácticas del mercado en
                 materia de diseño, seguridad y rendimiento.
             </div>
-            <div class="form-group" style="margin-top:2px;">
-                <strong>Garantía Desarrollalab</strong>
+            <div class="form-group" style="margin-top:5px;">
+                <strong class="texto">Garantía Desarrollalab</strong>
                 <ul class="two-columns" style="margin-top: -15px;">
                     <li>Performance optimization</li>
+                    <li>Accessibility</li>
                     <li>Best Practices</li>
                     <li>SEO ({{ $cotizacione->planes }} plan)</li>
                 </ul>
             </div>
-            <div class="form-group" style="margin-top:-30px;">
+            <div class="form-group" style="margin-top:-23px;">
                 <strong>Página 100% profesional que cumple los requisitos de Google</strong>
             </div>
             <img class="certi" src="assets/certi.png">
@@ -327,26 +342,27 @@
         </div>
         <img class="pdf-logo" src="assets/logo-nuevo.png">
         <div class="texto-blo1">
-            <strong>Desarrollalab - Soluciones Tecnológicas</strong>
-            <div>Web: www.desarrollalab.com</div>
-            <div>Tel: +52 777 259 03 65</div>
-            <div>CEO | Sinai Esmeralda García Marín</div>
-            <div>CEO | Demetrio Del Carmen Gómez</div>
+            <div class="texto fuente">Desarrollalab - Soluciones Tecnológicas</div>
+            <div class="texto">Web: www.desarrollalab.com</div>
+            <div class="texto">Tel: +52 777 259 03 65</div>
+            <div class="texto">CEO | Sinai Esmeralda García Marín</div>
+            <div class="texto">CEO | Demetrio Del Carmen Gómez</div>
         </div>
         <div class="texto-blo2">
-            <div class="form-group">
-                <strong>Folio:</strong>
+            <div class="form-group texto">
+                <label class="fuente">Folio:</label>
+                {{ $folio }}-{{ str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT) }}
             </div>
-            <div class="form-group">
-                <strong>Fecha:</strong>
+            <div class="form-group texto">
+                <strong class="fuente">Fecha:</strong>
                 {{ now()->format('d/m/Y') }}
             </div>
-            <div class="form-group">
-                <strong>Cliente:</strong>
+            <div class="form-group texto">
+                <strong class="fuente">Cliente:</strong>
                 {{ $cotizacione->cliente }}
             </div>
         </div>
-        <div class="separador">——————————————</div>
+        <div class="separador">___________________________</div>
         <h4 style="text-align: center; margin-top: 10px;">Detalles de pago</h4>
         <table>
             <tr>
@@ -377,20 +393,20 @@
                 @endif
             @endfor
             <tr>
-                <td style="font-size:14px;font-style: italic;text-align:center; border: none;" colspan="3"><strong>Total: </strong>{{ $textoTotal }} pesos MXN</td>
+                <td style="font-size:14px;font-style: italic;text-align:center; border: none;" colspan="3"><strong class="fuente">Total: </strong>{{ $textoTotal }} pesos MXN</td>
                 <td style="text-align: center; font-size:13px; background:#9cf85096;">${{ $cotizacione->total }} MXN</td>
             </tr>
         </table>
-        <h4 style="text-align: center; margin-top: 40px;">Información de pago</h4>
+        <h4 style="text-align: center; margin-top: 15px;">Información de pago</h4>
         <div class="form-group borde" style="margin-top: 2px;">
-            <div class="form-group" style="margin-top:10px;">
+            <div class="form-group" style="margin-top:5px;">
                 <strong>Datos bancarios para transferencia</strong>
             </div>
-            <div class="form-group" style="margin-top: 20px;">
+            <div class="texto form-group" style="margin-top: 20px;">
                 <strong>Cuenta CLABE:</strong>
                 012546004779716801
             </div>
-            <div class="form-group" >
+            <div class="texto form-group" >
                 <strong>Beneficiario:</strong>
                 Demetrio Del Carmen Gómez
             </div>
@@ -398,14 +414,14 @@
                 <strong>Banco:</strong>
                 BBVA BANCOMER
             </div>
-            <div class="form-group" style="margin-top: 20px;">
+            <div class="form-group" style="margin-top: 15px;">
                 <strong>Transferencias Internacionales:</strong>
             </div>
-            <div class="form-group" style="margin-top: 20px;">
+            <div class="form-group" style="margin-top: 15px;">
                 <strong>Código Swift:</strong>
                 BCMRMXMMPYM
             </div>
-            <div class="form-group" style="margin-top: 25px; margin-bottom:15px;">
+            <div class="form-group" style="margin-top: 20px; margin-bottom:5px; font-size:12px;">
                 <strong>Agradecemos el envío de su comprobante de pago al por alguno de nuestros medios de contacto oficial</strong>
             </div>
         </div>

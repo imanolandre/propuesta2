@@ -8,6 +8,9 @@
 @section('title', 'Create Pago')
 
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <!-- Page header -->
     <div class="page-header d-print-none">
         <div class="container-xl">
@@ -24,7 +27,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('pagos.index') }}" class="btn btn-danger d-none d-sm-inline-block">
+                        <a href="{{ route('pagos.index') }}" class="btn btn-danger d-none d-sm-inline-block texto">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                             Cancelar
@@ -60,7 +63,7 @@
                                             <div class="">
                                                 <label for="fechaInicio">Fecha de Inicio:</label>
                                             </div>
-                                            <input type="date" name="fechaInicio" class="form-control">
+                                            <input type="date" name="fechaInicio" class="form-control texto">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -68,17 +71,17 @@
                                             <div class="">
                                                 <label for="fechaFin">Fecha Fin:</label>
                                             </div>
-                                            <input type="date" name="fechaFin" class="form-control">
+                                            <input type="date" name="fechaFin" class="form-control texto">
                                         </div>
                                     </div>
                                     <div class="form-footer">
                                         <div class="text-end">
                                             <div class="d-flex">
-                                                <button type="reset" href="#" class="btn btn-secondary">
+                                                <button type="reset" href="#" class="btn btn-secondary texto">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-clockwise-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" /><path d="M5.63 7.16l0 .01" /><path d="M4.06 11l0 .01" /><path d="M4.63 15.1l0 .01" /><path d="M7.16 18.37l0 .01" /><path d="M11 19.94l0 .01" /></svg>
                                                     Limpiar
                                                 </button>
-                                                <button type="buttom" class="btn btn-primary ms-auto ajax-submit">
+                                                <button type="buttom" class="btn btn-primary ms-auto ajax-submit texto">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tada icon-tabler icon-tabler-pencil-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /><path d="M15 19l2 2l4 -4" /></svg>
                                                     DESCARGAR INFORME
                                                 </button>
@@ -96,6 +99,12 @@
 @endsection
 </div>
 <style>
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+    .texto{
+        font-family: 'Poppins', sans-serif;
+    }
     /* Estilos del Contenedor del Spinner que abarca toda la pantalla */
 #full-page-loader {
     position: fixed;

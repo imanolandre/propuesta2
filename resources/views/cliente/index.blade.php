@@ -11,6 +11,9 @@
 
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <div id="content">
     <div class="page-header d-print-none">
         <div class="container-xl">
@@ -28,7 +31,7 @@
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
                         <!-- Botón de exportar a Excel -->
-                        <a href="{{ route('export.clientes') }}" class="btn btn-teal d-none d-sm-inline-block">
+                        <a href="{{ route('export.clientes') }}" class="btn btn-teal d-none d-sm-inline-block texto">
                             <!-- Download SVG icon from http://tabler-icons.io/i/download -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M12 17v-6" /><path d="M9.5 14.5l2.5 2.5l2.5 -2.5" /></svg>
                             Exportar Excel
@@ -37,15 +40,9 @@
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M12 17v-6" /><path d="M9.5 14.5l2.5 2.5l2.5 -2.5" /></svg>
                         </a>
-                        <a href="{{ route('clientes.create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                        <a href="{{ route('clientes.create') }}" class="btn btn-primary d-none d-sm-inline-block texto">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse" width="24" height="24"
-                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                 stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <line x1="12" y1="5" x2="12" y2="19"/>
-                                <line x1="5" y1="12" x2="19" y2="12"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse" width="24" height="24"viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                             Agregar Cliente
                         </a>
                         <a href="{{ route('clientes.create') }}" class="btn btn-primary d-sm-none btn-icon">
@@ -175,6 +172,12 @@
 @endsection
 </div>
 <style>
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+    .texto{
+        font-family: 'Poppins', sans-serif;
+    }
     .table-header {
         color: #1b4faf; /* Color azul que mencionaste */
         font-weight: bold;
@@ -195,14 +198,16 @@ div.dataTables_filter label {
     margin-top: -20px;
 }
 .dataTables_filter input {
-        width: 100%;
-        height: 39px;
-        font-size: 14px;
-        background: #ffffff;
-        border-radius: 4px;
-        text-indent: 10px;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 39px;
+    font-size: 14px;
+    background: #ffffff;
+    border-radius: 4px;
+    text-indent: 10px;
 }
 div.dataTables_paginate {
+    font-family: 'Poppins', sans-serif;
     margin-top: 20px; /* Ajusta este valor según sea necesario */
 }
 div.dataTables_info {
