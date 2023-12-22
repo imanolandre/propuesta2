@@ -82,9 +82,9 @@
                                 </thead>
 
                                 <tbody>
-                                @forelse ($pagos as $pago)
+                                @forelse ($pagos as $index => $pago)
                                     <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $index + 1 }}</td>
 											<td>{{\Carbon\Carbon::parse($pago->fecha)->format('d-m-Y') }}</td>
 											<td>{{ $pago->proyecto->nombre }}</td>
 											<td>{{ $pago->cliente }}</td>
@@ -131,9 +131,6 @@
                                 </tbody>
 
                             </table>
-                        </div>
-                       <div class="card-footer d-flex align-items-center">
-                            {!! $pagos->links('tablar::pagination') !!}
                         </div>
                     </div>
                 </div>

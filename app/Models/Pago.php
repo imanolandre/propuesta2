@@ -40,7 +40,7 @@ class Pago extends Model
 		'gastosingreso' => 'required',
 		'conceptogasto' => 'required',
 		'metodopago' => 'required',
-		'adjunto' => 'required',
+		'adjunto' => 'nullable',
     ];
 
     protected $perPage = 20;

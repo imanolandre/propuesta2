@@ -7,6 +7,7 @@ use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 /**
  * Class PagoController
@@ -21,41 +22,9 @@ class PagoController extends Controller
      */
     public function index(Request $request)
     {
-        $buscarpor = $request->input('buscarpor', '');
-        $orden = $request->input('orden', 'fecha');
-        $direccion = $request->input('direccion', 'desc');
+        $pagos = Pago::orderBy('fecha', 'desc')->get();
 
-        $direccionFecha = ($orden === 'fecha') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionNombreProyecto = ($orden === 'proyecto.nombre') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionCliente = ($orden === 'cliente') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionMonto = ($orden === 'monto') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionGastosIngreso = ($orden === 'gastosingreso') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionDiezmo = ($orden === 'diezmo') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionLibre = ($orden === 'libre') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-
-        $pagos = Pago::join('proyectos', 'pagos.proyecto_id', '=', 'proyectos.id')
-            ->select('pagos.*', 'proyectos.nombre as nombre_proyecto')
-            ->where(function ($query) use ($buscarpor) {
-                $query->where('pagos.cliente', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('pagos.fecha', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('proyectos.nombre', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('pagos.monto', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('pagos.gastosingreso', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('pagos.diezmo', 'like', '%' . $buscarpor . '%')
-                    ->orWhere('pagos.libre', 'like', '%' . $buscarpor . '%');
-            });
-
-        // Aplicamos la ordenación
-        if ($orden == 'proyecto.nombre') {
-            $pagos->orderBy('proyectos.nombre', $direccion);
-        } else {
-            $pagos->orderBy($orden, $direccion);
-        }
-
-        $pagos = $pagos->paginate(10);
-
-        return view('pago.index', compact('pagos', 'buscarpor', 'direccionFecha', 'direccionNombreProyecto', 'direccionCliente', 'direccionMonto', 'direccionGastosIngreso', 'direccionDiezmo', 'direccionLibre'))
-            ->with('i', ($request->input('page', 1) - 1) * $pagos->perPage());
+        return view('pago.index', compact('pagos'));
     }
 
     public function mostrarFormularioFechas()
@@ -70,7 +39,8 @@ class PagoController extends Controller
         $ingresoBruto = $pagos->sum('monto');
         $gastototal= $pagos->sum('gastosingreso');
         $diezmototal= $pagos->sum('diezmo');
-        $fechaEmision = now();
+        $fechaEmision = Carbon::now()->locale('es_ES')->isoFormat('D-MMM-YY');
+        $fechaEmisionMayuscula = strtoupper($fechaEmision);
         $libretotal= $pagos->sum('libre');
         $data = [
             'pagos' => $pagos,
@@ -79,7 +49,7 @@ class PagoController extends Controller
             'ingresoBruto' => $ingresoBruto,
             'gastototal'=>$gastototal,
             'diezmototal' => $diezmototal,
-            'fechaEmision' => $fechaEmision,
+            'fechaEmision' => $fechaEmisionMayuscula,
             'libretotal'=> $libretotal,
         ];
         $pdf = PDF::loadView('pago.pdf', $data);
@@ -225,10 +195,13 @@ class PagoController extends Controller
                 ->with('error', 'Pago not found');
         }
 
-        // Eliminar el archivo adjunto si existe
-        $archivoAdjunto = public_path('archivo/adjunto/' . $pago->adjunto);
-        if (file_exists($archivoAdjunto)) {
-            unlink($archivoAdjunto);
+        // Verificar si existe el archivo adjunto antes de intentar eliminarlo
+        if (!empty($pago->adjunto)) {
+            $archivoAdjunto = public_path('archivo/adjunto/' . $pago->adjunto);
+
+            if (file_exists($archivoAdjunto)) {
+                unlink($archivoAdjunto);
+            }
         }
 
         // Eliminar el registro de pago

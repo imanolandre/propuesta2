@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Reporte de Pagos {{ $fechaEmision->format('d-m-Y') }}</title>
+    <title>Reporte de Pagos {{ $fechaEmision }}</title>
     <style>
         .texto{
             font-family:sans-serif;
@@ -90,8 +90,8 @@
             <div>CEO | Demetrio Del Carmen Gómez</div>
         </div>
         <div class="texto-blo2">
-            <div>Folio: RE-PA{{now()->format('h') }}</div>
-            <div>Fecha de emisión: {{ $fechaEmision->format('d/m/Y') }}</div>
+            <div>Folio: RE-PA-{{now()->format('h') }}</div>
+            <div>Fecha de emisión: {{ $fechaEmision }}</div>
         </div>
         <div class="separador">——————————————————————</div>
         <div class="texto-blo3">

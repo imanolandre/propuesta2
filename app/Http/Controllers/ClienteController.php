@@ -164,9 +164,14 @@ class ClienteController extends Controller
                 ->with('error', 'Cliente not found');
         }
 
-        $archivo = public_path('archivo/clientes/' . $cliente->constanciasituaciónFiscal);
-        if (file_exists($archivo)) {
-            unlink($archivo);
+        $archivo = $cliente->constanciasituaciónFiscal;
+
+        if (!empty($archivo)) {
+            $rutaArchivo = public_path('archivo/clientes/' . $archivo);
+
+            if (file_exists($rutaArchivo)) {
+                unlink($rutaArchivo);
+            }
         }
 
         $cliente->delete();

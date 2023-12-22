@@ -4,6 +4,8 @@
 </div>
 <div id="content">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 <div class="row">
     <div class="col-md-6">
         <div class="form-group mb-3">
@@ -49,7 +51,7 @@
         <div class="form-group mb-3">
             <label class="form-label required">{{ Form::label('cliente_id', 'Nombre del Cliente') }}</label>
             <div>
-                {{ Form::select('cliente_id', $clientes, $proyecto->cliente_id, ['class' => 'form-control form-select' . ($errors->has('cliente_id') ? ' is-invalid' : ''),'placeholder' => 'Selecciona un cliente'])}}
+                {{ Form::select('cliente_id', $clientes, $proyecto->cliente_id, ['class' => 'tom-select form-control form-select select2' . ($errors->has('cliente_id') ? ' is-invalid' : ''),'placeholder' => 'Seleccione en tipo de servicio'])}}
                 {!! $errors->first('cliente_id', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
@@ -121,8 +123,25 @@
             </div>
         </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Inicializar Tom Select en el campo de selección del cliente
+        var select = new TomSelect('.select2', {
+            // Opciones de configuración de Tom Select
+        });
+
+        // Resto de tu script...
+        document.getElementById('submit-button').addEventListener('click', function () {
+            // ... Tu lógica actual ...
+        });
+    });
+</script>
 </div>
 <style>
+    .tom-select{
+        background-color: #ffffff;
+        color: #000000;
+    }
     /* Estilos del Contenedor del Spinner */
     #page-loader {
         position: fixed;

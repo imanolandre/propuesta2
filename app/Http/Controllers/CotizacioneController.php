@@ -70,14 +70,15 @@ class CotizacioneController extends Controller
 
         // Obtén el nombre del cliente
         $nombreCliente = $request->input('cliente');
-        Carbon::setLocale('es');
         // Obtén la fecha actual con el formato deseado (Nov-28-23)
-        $fechaActual = now()->format('M-d-y');
-        $fechaFolio = now()->format('M');
+        $fechaActual = Carbon::now()->locale('es_ES')->isoFormat('D-MMM-YY');
+        $fechaActualEnMayuscula = strtoupper($fechaActual);
 
+        $fechaFolio = Carbon::now()->locale('es_ES')->isoFormat('MMM');
+        $fechaFolioMayuscula = strtoupper($fechaFolio);
+        $folio = "COT-{$fechaFolioMayuscula}";
         // Concatena las partes para formar el nombre del archivo
-        $nombreArchivo = "COT-{$abreviaturaServicio}-{$nombreCliente}-{$fechaActual}";
-        $folio = "COT-{$fechaFolio}";
+        $nombreArchivo = "COT-{$abreviaturaServicio}-{$nombreCliente}-{$fechaActualEnMayuscula}";
 
         // Obtener importe, descuento e importe adicional del formulario
         $importe = floatval($request->input('importe'));
@@ -160,7 +161,6 @@ class CotizacioneController extends Controller
     public function edit($id)
     {
         $cotizacione = Cotizacione::find($id);
-
         return view('cotizacione.edit', compact('cotizacione'));
     }
     /**
@@ -178,13 +178,15 @@ class CotizacioneController extends Controller
 
         // Obtén el nombre del cliente
         $nombreCliente = $request->input('cliente');
-        // Obtén la fecha actual con el formato deseado (Nov-28-23)
-        $fechaActual = Carbon::now()->locale('es_ES')->isoFormat('MM-d-YY');
 
-        $fechaFolio = now()->format('M');
-        $folio = "COT-{$fechaFolio}";
+        $fechaActual = Carbon::now()->locale('es_ES')->isoFormat('D-MMM-YY');
+        $fechaActualEnMayuscula = strtoupper($fechaActual);
+
+        $fechaFolio = Carbon::now()->locale('es_ES')->isoFormat('MMM');
+        $fechaFolioMayuscula = strtoupper($fechaFolio);
+        $folio = "COT-{$fechaFolioMayuscula}";
         // Concatena las partes para formar el nombre del archivo
-        $nombreArchivo = "COT-{$abreviaturaServicio}-{$nombreCliente}-{$fechaActual}";
+        $nombreArchivo = "COT-{$abreviaturaServicio}-{$nombreCliente}-{$fechaActualEnMayuscula}";
 
         // Obtener importe y descuento del formulario
         $importe = floatval($request->input('importe'));

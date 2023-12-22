@@ -25,431 +25,200 @@
             </div>
           </div>
         </div>
+
         <!-- Page body -->
         <div class="page-body">
           <div class="container-xl">
             <div class="row row-deck row-cards">
-
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-md-4">
                     <div class="card">
-                        <div class="card-body d-flex align-items-center">
-                            <div class="col">
-                                <span style="width: 60px; height:60px;" class="bg-twitter text-white avatar">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-browser-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 1a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z" /><path d="M4 8h16" /><path d="M8 4v4" /><path d="M9.5 14.5l1.5 1.5l3 -3" /></svg>
-                                </span>
+                        <div class="row row-0">
+                          <div class="col-3 d-flex align-items-center justify-content-center">
+                            <img src="{{asset('assets/clientes.png')}}" class="rounded-start" alt="Shape of You" width="60" height="60">
+                          </div>
+                          <div class="col-6 d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <div class="h1 row row-0">Clientes</div>
                             </div>
-                            <div class="col-xl">
-                                <div class="h2 mb-2 font-weight-medium">
-                                  Clientes
+                          </div>
+                          <div class="col-3 d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <div class="h1 row row-0">
+                                    <?php
+                                        $totalClientes = App\Models\Cliente::count();
+                                        echo $totalClientes;
+                                    ?>
                                 </div>
-                              </div>
-                            <div class="ml-auto text-right">
-                                <div class="h1 mb-2">75</div>
                             </div>
+                          </div>
                         </div>
-                    </div>
-                </div>
-
-
-              <div class="col-sm-6 col-lg-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex align-items-center">
-                      <div class="subheader">Proyectos</div>
-                    </div>
-                    <div class="d-flex align-items-baseline">
-                      <div class="h1 mb-0 me-2">120</div>
-                    </div>
+                      </div>
                   </div>
-                </div>
-              </div>
-
-              <div class="col-sm-6 col-lg-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex align-items-center">
-                      <div class="subheader">Cotizaciones</div>
-                    </div>
-                    <div class="d-flex align-items-baseline">
-                      <div class="h1 mb-3 me-2">782</div>
-                    </div>
+                  <div class="col-md-4">
+                    <div class="card">
+                        <div class="row row-0">
+                          <div class="col-3 d-flex align-items-center justify-content-center">
+                            <img src="{{asset('assets/proyecto.png')}}" class="rounded-start" alt="Shape of You" width="70" height="60">
+                          </div>
+                          <div class="col-6 d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <div class="h1 row row-0">Proyectos</div>
+                            </div>
+                          </div>
+                          <div class="col-3 d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <div class="h1 row row-0">
+                                    <?php
+                                        $totalProyectos = App\Models\Proyecto::count();
+                                        echo $totalProyectos;
+                                    ?>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   </div>
-                </div>
-              </div>
-
+                  <div class="col-md-4">
+                    <div class="card">
+                        <div class="row row-0">
+                          <div class="col-3 d-flex align-items-center justify-content-center">
+                            <img src="{{asset('assets/cotizacion.png')}}" class="rounded-start" alt="Shape of You" width="60" height="60">
+                          </div>
+                          <div class="col-6 d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <div class="h1 row row-0">Cotizaciones</div>
+                            </div>
+                          </div>
+                          <div class="col-3 d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <div class="h1 row row-0">
+                                    <?php
+                                        $totalCotizaciones = App\Models\Cotizacione::count();
+                                        echo $totalCotizaciones;
+                                    ?>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
               <div class="col-12">
                 <div class="row row-cards">
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card card-sm">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-auto">
-                            <span class="bg-primary text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2"></path><path d="M12 3v3m0 12v3"></path></svg>
-                            </span>
-                          </div>
-                          <div class="col">
-                            <div class="font-weight-medium">
-                              132 Sales
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="row row-0">
+                              <div class="col-3 d-flex align-items-center justify-content-center">
+                                <span class="bg-green text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-businessplan" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6m-5 0a5 3 0 1 0 10 0a5 3 0 1 0 -10 0" /><path d="M11 6v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" /><path d="M11 10v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" /><path d="M11 14v4c0 1.657 2.239 3 5 3s5 -1.343 5 -3v-4" /><path d="M7 9h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" /><path d="M5 15v1m0 -8v1" /></svg>
+                                </span>
+                              </div>
+                              <div class="col-2 d-flex align-items-center justify-content-center">
+                                <div class="card-body">
+                                    <div class="h3 row row-0">Monto</div>
+                                </div>
+                              </div>
+                              <div class="col-7 d-flex align-items-center justify-content-center">
+                                <div class="card-body">
+                                    <div class="h4 row row-0">
+                                        $<?php
+                                            // Obtener la suma del campo "monto" de la tabla "pagos"
+                                            $totalMontoPagos = App\Models\Pago::sum('monto');
+                                            echo $totalMontoPagos;
+                                        ?> MXN
+                                    </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="text-secondary">
-                              12 waiting payments
-                            </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card card-sm">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-auto">
-                            <span class="bg-green text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M17 17h-11v-14h-2"></path><path d="M6 5l14 1l-1 7h-13"></path></svg>
-                            </span>
-                          </div>
-                          <div class="col">
-                            <div class="font-weight-medium">
-                              78 Orders
+                      <div class="col-md-3">
+                        <div class="card">
+                            <div class="row row-0">
+                              <div class="col-3 d-flex align-items-center justify-content-center">
+                                <span class="bg-red text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coin-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14.8 9a2 2 0 0 0 -1.8 -1h-1m-2.82 1.171a2 2 0 0 0 1.82 2.829h1m2.824 2.822a2 2 0 0 1 -1.824 1.178h-2a2 2 0 0 1 -1.8 -1" /><path d="M20.042 16.045a9 9 0 0 0 -12.087 -12.087m-2.318 1.677a9 9 0 1 0 12.725 12.73" /><path d="M12 6v2m0 8v2" /><path d="M3 3l18 18" /></svg>
+                                </span>
+                              </div>
+                              <div class="col-2 d-flex align-items-center justify-content-center">
+                                <div class="card-body">
+                                    <div class="h3 row row-0">Gastos</div>
+                                </div>
+                              </div>
+                              <div class="col-7 d-flex align-items-center justify-content-center">
+                                <div class="card-body">
+                                    <div class="h4 row row-0">
+                                        $<?php
+                                            // Obtener la suma del campo "monto" de la tabla "pagos"
+                                            $totalGastoPagos = App\Models\Pago::sum('gastosingreso');
+                                            echo $totalGastoPagos;
+                                        ?> MXN
+                                    </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="text-secondary">
-                              32 shipped
-                            </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card card-sm">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-auto">
-                            <span class="bg-twitter text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z"></path></svg>
-                            </span>
-                          </div>
-                          <div class="col">
-                            <div class="font-weight-medium">
-                              623 Shares
+                      <div class="col-md-3">
+                        <div class="card">
+                            <div class="row row-0">
+                              <div class="col-3 d-flex align-items-center justify-content-center">
+                                <span class="bg-flickr text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pig-money" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 11v.01" /><path d="M5.173 8.378a3 3 0 1 1 4.656 -1.377" /><path d="M16 4v3.803a6.019 6.019 0 0 1 2.658 3.197h1.341a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-1.342c-.336 .95 -.907 1.8 -1.658 2.473v2.027a1.5 1.5 0 0 1 -3 0v-.583a6.04 6.04 0 0 1 -1 .083h-4a6.04 6.04 0 0 1 -1 -.083v.583a1.5 1.5 0 0 1 -3 0v-2l0 -.027a6 6 0 0 1 4 -10.473h2.5l4.5 -3h0z" /></svg>
+                                </span>
+                              </div>
+                              <div class="col-2 d-flex align-items-center justify-content-center">
+                                <div class="card-body">
+                                    <div class="h3 row row-0">Diezmo</div>
+                                </div>
+                              </div>
+                              <div class="col-7 d-flex align-items-center justify-content-center">
+                                <div class="card-body">
+                                    <div class="h4 row row-0">
+                                        $<?php
+                                            // Obtener la suma del campo "monto" de la tabla "pagos"
+                                            $totalDiezmoPagos = App\Models\Pago::sum('diezmo');
+                                            echo $totalDiezmoPagos;
+                                        ?> MXN
+                                    </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="text-secondary">
-                              16 today
-                            </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card card-sm">
-                      <div class="card-body">
-                        <div class="row align-items-center">
-                          <div class="col-auto">
-                            <span class="bg-facebook text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path></svg>
-                            </span>
-                          </div>
-                          <div class="col">
-                            <div class="font-weight-medium">
-                              132 Likes
+                      <div class="col-md-3">
+                        <div class="card">
+                            <div class="row row-0">
+                              <div class="col-3 d-flex align-items-center justify-content-center">
+                                <span class="bg-rss text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coins" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z" /><path d="M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4" /><path d="M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z" /><path d="M3 6v10c0 .888 .772 1.45 2 2" /><path d="M3 11c0 .888 .772 1.45 2 2" /></svg>
+                                </span>
+                               </div>
+                              <div class="col-2 d-flex align-items-center justify-content-center">
+                                <div class="card-body">
+                                    <div class="h3 row row-0">Libre</div>
+                                </div>
+                              </div>
+                              <div class="col-7 d-flex align-items-center justify-content-center">
+                                <div class="card-body">
+                                    <div class="h4 row row-0">
+                                        $<?php
+                                            // Obtener la suma del campo "monto" de la tabla "pagos"
+                                            $totalLibrePagos = App\Models\Pago::sum('libre');
+                                            echo $totalLibrePagos;
+                                        ?> MXN
+                                    </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="text-secondary">
-                              21 today
-                            </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                  </div>
                 </div>
               </div>
-
-              <div class="col-lg-6">
-                <div class="row row-cards">
-
-                  <div class="col-12">
-                    <div class="card" style="height: 28rem">
-                      <div class="card-body card-body-scrollable card-body-scrollable-shadow">
-                        <div class="divide-y">
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar">JL</span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Jeffie Lewzey</strong> commented on your <strong>"I'm not a witch."</strong> post.
-                                </div>
-                                <div class="text-secondary">yesterday</div>
-                              </div>
-                              <div class="col-auto align-self-center">
-                                <div class="badge bg-primary"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/002m.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  It's <strong>Mallory Hulme</strong>'s birthday. Wish him well!
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                              <div class="col-auto align-self-center">
-                                <div class="badge bg-primary"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/003m.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Dunn Slane</strong> posted <strong>"Well, what do you want?"</strong>.
-                                </div>
-                                <div class="text-secondary">today</div>
-                              </div>
-                              <div class="col-auto align-self-center">
-                                <div class="badge bg-primary"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/000f.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Emmy Levet</strong> created a new project <strong>Morning alarm clock</strong>.
-                                </div>
-                                <div class="text-secondary">4 days ago</div>
-                              </div>
-                              <div class="col-auto align-self-center">
-                                <div class="badge bg-primary"></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/001f.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Maryjo Lebarree</strong> liked your photo.
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar">EP</span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Egan Poetz</strong> registered new client as <strong>Trilia</strong>.
-                                </div>
-                                <div class="text-secondary">yesterday</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/002f.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Kellie Skingley</strong> closed a new deal on project <strong>Pen Pineapple Apple Pen</strong>.
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/003f.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Christabel Charlwood</strong> created a new project for <strong>Wikibox</strong>.
-                                </div>
-                                <div class="text-secondary">4 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar">HS</span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Haskel Shelper</strong> change status of <strong>Tabler Icons</strong> from <strong>open</strong> to <strong>closed</strong>.
-                                </div>
-                                <div class="text-secondary">today</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/006m.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Lorry Mion</strong> liked <strong>Tabler UI Kit</strong>.
-                                </div>
-                                <div class="text-secondary">yesterday</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/004f.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Leesa Beaty</strong> posted new video.
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/007m.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Perren Keemar</strong> and 3 others followed you.
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar">SA</span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Sunny Airey</strong> upload 3 new photos to category <strong>Inspirations</strong>.
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/009m.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Geoffry Flaunders</strong> made a <strong>$10</strong> donation.
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/010m.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Thatcher Keel</strong> created a profile.
-                                </div>
-                                <div class="text-secondary">3 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/005f.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Dyann Escala</strong> hosted the event <strong>Tabler UI Birthday</strong>.
-                                </div>
-                                <div class="text-secondary">4 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar" style="background-image: url(./static/avatars/006f.jpg)"></span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Avivah Mugleston</strong> mentioned you on <strong>Best of 2020</strong>.
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar">AA</span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                  <strong>Arlie Armstead</strong> sent a Review Request to <strong>Amanda Blake</strong>.
-                                </div>
-                                <div class="text-secondary">2 days ago</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Social Media Traffic</h3>
-                  </div>
-
-                </div>
-              </div>
-
               <div class="col-lg-12">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex">
                       <h3 class="card-title">Proyectos</h3>
-                      <div class="ms-auto">
-                        <div class="dropdown">
-                          <a class="dropdown-toggle text-secondary" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last 7 days</a>
-                          <div class="dropdown-menu dropdown-menu-end">
-                            <a class="dropdown-item active" href="#">Last 7 days</a>
-                            <a class="dropdown-item" href="#">Last 30 days</a>
-                            <a class="dropdown-item" href="#">Last 3 months</a>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     <div class="row">
                       <div class="col">
@@ -458,96 +227,121 @@
                               <div id="chart" class="chart-lg"></div>
                             </div>
                           </div>
-
                           <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
                           <script>
                             document.addEventListener("DOMContentLoaded", function() {
                                 var options = {
-                                    series: [{
-                                    name: 'Startup',
-                                    data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 60, 70, 50]
-                                    }, {
-                                    name: 'Empresarial',
-                                    data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 100, 105, 90]
-                                    }, {
-                                    name: 'Corporativo',
-                                    data: [66, 75, 90, 92, 78, 110, 96, 100, 90, 80, 95, 93]
-                                    },{
-                                    name: 'Escalable',
-                                    data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 30, 55, 60]
-                                    }],
-                                    chart: {
-                                    type: 'bar',
-                                    height: 350
-                                    },
-                                    plotOptions: {
-                                    bar: {
-                                        horizontal: false,
-                                        columnWidth: '55%',
-                                        endingShape: 'rounded'
-                                    },
-                                    },
+                                series: [{
+                                name: 'Desarrollo Web',
+                                data: [
+                                    {!! isset($serviciosProyectosStartup['Desarrollo web']) ? $serviciosProyectosStartup['Desarrollo web'] : 0 !!},
+                                    {!! isset($serviciosProyectosEmpresarial['Desarrollo web']) ? $serviciosProyectosEmpresarial['Desarrollo web'] : 0 !!},
+                                    {!! isset($serviciosProyectosCorporativo['Desarrollo web']) ? $serviciosProyectosCorporativo['Desarrollo web'] : 0 !!},
+                                    {!! isset($serviciosProyectosEscalable['Desarrollo web']) ? $serviciosProyectosEscalable['Desarrollo web'] : 0 !!}
+                                ]
+                                }, {
+                                name: 'Desarrollo Digital',
+                                data: [
+                                    {!! isset($serviciosProyectosStartup['Diseño digital']) ? $serviciosProyectosStartup['Diseño digital'] : 0 !!},
+                                    {!! isset($serviciosProyectosEmpresarial['Diseño digital']) ? $serviciosProyectosEmpresarial['Diseño digital'] : 0 !!},
+                                    {!! isset($serviciosProyectosCorporativo['Diseño digital']) ? $serviciosProyectosCorporativo['Diseño digital'] : 0 !!},
+                                    {!! isset($serviciosProyectosEscalable['Diseño digital']) ? $serviciosProyectosEscalable['Diseño digital'] : 0 !!}
+                                ]
+                                }, {
+                                name: 'E-commerce',
+                                data: [
+                                    {!! isset($serviciosProyectosStartup['E-commerce']) ? $serviciosProyectosStartup['E-commerce'] : 0 !!},
+                                    {!! isset($serviciosProyectosEmpresarial['E-commerce']) ? $serviciosProyectosEmpresarial['E-commerce'] : 0 !!},
+                                    {!! isset($serviciosProyectosCorporativo['E-commerce']) ? $serviciosProyectosCorporativo['E-commerce'] : 0 !!},
+                                    {!! isset($serviciosProyectosEscalable['E-commerce']) ? $serviciosProyectosEscalable['E-commerce'] : 0 !!}
+                                ]
+                                }, {
+                                name: 'Marketing Digital',
+                                data: [
+                                    {!! isset($serviciosProyectosStartup['Marketing digital']) ? $serviciosProyectosStartup['Marketing digital'] : 0 !!},
+                                    {!! isset($serviciosProyectosEmpresarial['Marketing digital']) ? $serviciosProyectosEmpresarial['Marketing digital'] : 0 !!},
+                                    {!! isset($serviciosProyectosCorporativo['Marketing digital']) ? $serviciosProyectosCorporativo['Marketing digital'] : 0 !!},
+                                    {!! isset($serviciosProyectosEscalable['Marketing digital']) ? $serviciosProyectosEscalable['Marketing digital'] : 0 !!}
+                                ]
+                                }, {
+                                name: 'Desarrollo de Software',
+                                data: [
+                                    {!! isset($serviciosProyectosStartup['Desarrollo de Software']) ? $serviciosProyectosStartup['Desarrollo de Software'] : 0 !!},
+                                    {!! isset($serviciosProyectosEmpresarial['Desarrollo de Software']) ? $serviciosProyectosEmpresarial['Desarrollo de Software'] : 0 !!},
+                                    {!! isset($serviciosProyectosCorporativo['Desarrollo de Software']) ? $serviciosProyectosCorporativo['Desarrollo de Software'] : 0 !!},
+                                    {!! isset($serviciosProyectosEscalable['Desarrollo de Software']) ? $serviciosProyectosEscalable['Desarrollo de Software'] : 0 !!}
+                                ]
+                                },{
+                                name: 'Aplicaciones Móviles',
+                                data: [
+                                    {!! isset($serviciosProyectosStartup['Aplicaciones Móviles']) ? $serviciosProyectosStartup['Aplicaciones Móviles'] : 0 !!},
+                                    {!! isset($serviciosProyectosEmpresarial['Aplicaciones Móviles']) ? $serviciosProyectosEmpresarial['Aplicaciones Móviles'] : 0 !!},
+                                    {!! isset($serviciosProyectosCorporativo['Aplicaciones Móviles']) ? $serviciosProyectosCorporativo['Aplicaciones Móviles'] : 0 !!},
+                                    {!! isset($serviciosProyectosEscalable['Aplicaciones Móviles']) ? $serviciosProyectosEscalable['Aplicaciones Móviles'] : 0 !!}
+                                ]
+                                }],
+                                chart: {
+                                type: 'bar',
+                                height: 350,
+                                stacked: true,
+                                },
+                                plotOptions: {
+                                bar: {
+                                    horizontal: true,
                                     dataLabels: {
-                                    enabled: false
-                                    },
-                                    stroke: {
-                                    show: true,
-                                    width: 2,
-                                    colors: ['transparent']
-                                    },
-                                    xaxis: {
-                                    categories: ['Ene','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Agos', 'Set', 'Oct', 'Nov', 'Dic'],
-                                    },
-                                    yaxis: {
-                                    title: {
-                                        text: 'cantidad'
-                                    }
-                                    },
-                                    fill: {
-                                    opacity: 1
-                                    },
-                                    tooltip: {
-                                    y: {
-                                        formatter: function (val) {
-                                        return val + " proyectos"
+                                    total: {
+                                        enabled: true,
+                                        offsetX: 0,
+                                        style: {
+                                        fontSize: '13px',
+                                        fontWeight: 900
                                         }
                                     }
                                     }
-                                    };
+                                },
+                                },
+                                stroke: {
+                                width: 1,
+                                colors: ['#fff']
+                                },
+                                title: {
+                                text: 'Cantidad de Tipos de proyecto por Servicio'
+                                },
+                                xaxis: {
+                                categories: ['Startup', 'Empresarial', 'Corporativo', 'Escalable'],
+                                labels: {
+                                    formatter: function (val) {
+                                    return val
+                                    }
+                                }
+                                },
+                                yaxis: {
+                                title: {
+                                    text: undefined
+                                },
+                                },
+                                tooltip: {
+                                y: {
+                                    formatter: function (val) {
+                                    return val + " proyec."
+                                    }
+                                }
+                                },
+                                fill: {
+                                opacity: 1
+                                },
+                                legend: {
+                                position: 'top',
+                                horizontalAlign: 'left',
+                                offsetX: 40
+                                }
+                                };
 
-                                    var chart = new ApexCharts(document.querySelector("#chart"), options);
-                                    chart.render();
+                                var chart = new ApexCharts(document.querySelector("#chart"), options);
+                                chart.render();
                             });
-                          </script>
+                            </script>
 
-                      </div>
-                      <div class="col-md-auto">
-                        <div class="divide-y divide-y-fill">
-                          <div class="px-3">
-                            <div class="text-secondary">
-                              <span class="status-dot bg-azure"></span> Startup
-                            </div>
-                            <div class="h2">11,425</div>
-                          </div>
-                          <div class="px-3">
-                            <div class="text-secondary">
-                              <span class="status-dot bg-success"></span> Empresarial
-                            </div>
-                            <div class="h2">6,458</div>
-                          </div>
-                          <div class="px-3">
-                            <div class="text-secondary">
-                              <span class="status-dot bg-yellow"></span> Corporativo
-                            </div>
-                            <div class="h2">3,985</div>
-                          </div>
-                          <div class="px-3">
-                            <div class="text-secondary">
-                              <span class="status-dot bg-red"></span> Escalable
-                            </div>
-                            <div class="h2">3,985</div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -560,55 +354,62 @@
                         <div class="card-body">
                             <div id="chart-demo-pie" class="chart-lg"></div>
                         </div>
-
                       <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
                       <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                          window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-pie'), {
-                            chart: {
-                              type: "donut",
-                              fontFamily: 'inherit',
-                              height: 240,
-                              sparkline: {
-                                enabled: true
-                              },
-                              animations: {
-                                enabled: true
-                              },
-                            },
-                            fill: {
-                              opacity: 1,
-                            },
-                            series: [44, 55, 12, 2],
-                            labels: ["Direct", "Affilliate", "E-mail", "Other"],
-                            tooltip: {
-                              theme: 'dark'
-                            },
-                            grid: {
-                              strokeDashArray: 4,
-                            },
-                            colors: [tabler.getColor("primary"), tabler.getColor("primary", 0.8), tabler.getColor("primary", 0.6), tabler.getColor("gray-300")],
-                            legend: {
-                              show: true,
-                              position: 'bottom',
-                              offsetY: 12,
-                              markers: {
-                                width: 10,
-                                height: 10,
-                                radius: 100,
-                              },
-                              itemMargin: {
-                                horizontal: 8,
-                                vertical: 8
-                              },
-                            },
-                            tooltip: {
-                              fillSeriesColor: false
-                            },
-                          })).render();
+                        document.addEventListener("DOMContentLoaded", function () {
+                            window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-pie'), {
+                                chart: {
+                                    type: "donut",
+                                    fontFamily: 'inherit',
+                                    height: 240,
+                                    sparkline: {
+                                        enabled: false
+                                    },
+                                    animations: {
+                                        enabled: true
+                                    },
+                                },
+                                fill: {
+                                    opacity: 1,
+                                },
+                                series: Object.values({!! json_encode($serviciosProyectosStartup) !!}),
+                                labels: Object.keys({!! json_encode($serviciosProyectosStartup) !!}),
+                                tooltip: {
+                                    theme: 'dark'
+                                },
+                                grid: {
+                                    strokeDashArray: 4,
+                                },
+                                colors: [
+                                    // Color personalizado para el primer servicio
+                                    '#0a4e9b',  // Reemplaza esto con el color que desees
+                                    // Colores según la cantidad de servicios (si hay más de uno)
+                                    @for ($i = 1; $i < count($serviciosProyectosStartup); $i++)
+                                        tabler.getColor("primary", {{ $i / count($serviciosProyectosStartup) }})
+                                        @if ($i < count($serviciosProyectosStartup) - 1),
+                                            @endif
+                                    @endfor
+                                ],
+                                legend: {
+                                    show: true,
+                                    position: 'bottom',
+                                    offsetY: 0,
+                                    markers: {
+                                        width: 10,
+                                        height: 10,
+                                        radius: 100,
+                                    },
+                                    itemMargin: {
+                                        horizontal: 0,
+                                        vertical: 0
+                                    },
+                                },
+                                tooltip: {
+                                    fillSeriesColor: false
+                                },
+                            })).render();
                         });
-                      </script>
-
+                    </script>
                   </div>
                 </div>
               </div>
@@ -617,57 +418,65 @@
                   <div class="card-body">
                     <h3 class="card-title">Empresarial</h3>
                         <div class="card-body">
-                            <div id="chart-demo-pie2" class="chart-lg"></div>
+                            <div id="chart-demo-pie-empresarial" class="chart-lg"></div>
                         </div>
 
                       <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
                       <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                          window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-pie2'), {
-                            chart: {
-                              type: "donut",
-                              fontFamily: 'inherit',
-                              height: 240,
-                              sparkline: {
-                                enabled: true
-                              },
-                              animations: {
-                                enabled: true
-                              },
-                            },
-                            fill: {
-                              opacity: 1,
-                            },
-                            series: [44, 55, 12, 2],
-                            labels: ["Direct", "Affilliate", "E-mail", "Other"],
-                            tooltip: {
-                              theme: 'dark'
-                            },
-                            grid: {
-                              strokeDashArray: 4,
-                            },
-                            colors: [tabler.getColor("primary"), tabler.getColor("primary", 0.8), tabler.getColor("primary", 0.6), tabler.getColor("gray-300")],
-                            legend: {
-                              show: true,
-                              position: 'bottom',
-                              offsetY: 12,
-                              markers: {
-                                width: 10,
-                                height: 10,
-                                radius: 100,
-                              },
-                              itemMargin: {
-                                horizontal: 8,
-                                vertical: 8
-                              },
-                            },
-                            tooltip: {
-                              fillSeriesColor: false
-                            },
-                          })).render();
+                        document.addEventListener("DOMContentLoaded", function () {
+                            window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-pie-empresarial'), {
+                                chart: {
+                                    type: "donut",
+                                    fontFamily: 'inherit',
+                                    height: 240,
+                                    sparkline: {
+                                        enabled: false
+                                    },
+                                    animations: {
+                                        enabled: true
+                                    },
+                                },
+                                fill: {
+                                    opacity: 1,
+                                },
+                                series: Object.values({!! json_encode($serviciosProyectosEmpresarial) !!}),
+                                labels: Object.keys({!! json_encode($serviciosProyectosEmpresarial) !!}),
+                                tooltip: {
+                                    theme: 'dark'
+                                },
+                                grid: {
+                                    strokeDashArray: 4,
+                                },
+                                colors: [
+                                    // Color personalizado para el primer servicio
+                                    '#0a4e9b',  // Reemplaza esto con el color que desees
+                                    // Colores según la cantidad de servicios (si hay más de uno)
+                                    @for ($i = 1; $i < count($serviciosProyectosEmpresarial); $i++)
+                                        tabler.getColor("primary", {{ $i / count($serviciosProyectosEmpresarial) }})
+                                        @if ($i < count($serviciosProyectosEmpresarial) - 1),
+                                            @endif
+                                    @endfor
+                                ],
+                                legend: {
+                                    show: true,
+                                    position: 'bottom',
+                                    offsetY: 0,
+                                    markers: {
+                                        width: 10,
+                                        height: 10,
+                                        radius: 100,
+                                    },
+                                    itemMargin: {
+                                        horizontal: 0,
+                                        vertical: 0
+                                    },
+                                },
+                                tooltip: {
+                                    fillSeriesColor: false
+                                },
+                            })).render();
                         });
-                      </script>
-
+                    </script>
                   </div>
                 </div>
               </div>
@@ -676,57 +485,65 @@
                   <div class="card-body">
                     <h3 class="card-title">Corporativo</h3>
                         <div class="card-body">
-                            <div id="chart-demo-pie3" class="chart-lg"></div>
+                            <div id="chart-demo-pie-corporativo" class="chart-lg"></div>
                         </div>
 
                       <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
                       <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                          window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-pie3'), {
-                            chart: {
-                              type: "donut",
-                              fontFamily: 'inherit',
-                              height: 240,
-                              sparkline: {
-                                enabled: true
-                              },
-                              animations: {
-                                enabled: true
-                              },
-                            },
-                            fill: {
-                              opacity: 1,
-                            },
-                            series: [44, 55, 12, 2],
-                            labels: ["Direct", "Affilliate", "E-mail", "Other"],
-                            tooltip: {
-                              theme: 'dark'
-                            },
-                            grid: {
-                              strokeDashArray: 4,
-                            },
-                            colors: [tabler.getColor("primary"), tabler.getColor("primary", 0.8), tabler.getColor("primary", 0.6), tabler.getColor("gray-300")],
-                            legend: {
-                              show: true,
-                              position: 'bottom',
-                              offsetY: 12,
-                              markers: {
-                                width: 10,
-                                height: 10,
-                                radius: 100,
-                              },
-                              itemMargin: {
-                                horizontal: 8,
-                                vertical: 8
-                              },
-                            },
-                            tooltip: {
-                              fillSeriesColor: false
-                            },
-                          })).render();
+                        document.addEventListener("DOMContentLoaded", function () {
+                            window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-pie-corporativo'), {
+                                chart: {
+                                    type: "donut",
+                                    fontFamily: 'inherit',
+                                    height: 240,
+                                    sparkline: {
+                                        enabled: false
+                                    },
+                                    animations: {
+                                        enabled: true
+                                    },
+                                },
+                                fill: {
+                                    opacity: 1,
+                                },
+                                series: Object.values({!! json_encode($serviciosProyectosCorporativo) !!}),
+                                labels: Object.keys({!! json_encode($serviciosProyectosCorporativo) !!}),
+                                tooltip: {
+                                    theme: 'dark'
+                                },
+                                grid: {
+                                    strokeDashArray: 4,
+                                },
+                                colors: [
+                                    // Color personalizado para el primer servicio
+                                    '#0a4e9b',  // Reemplaza esto con el color que desees
+                                    // Colores según la cantidad de servicios (si hay más de uno)
+                                    @for ($i = 1; $i < count($serviciosProyectosCorporativo); $i++)
+                                        tabler.getColor("primary", {{ $i / count($serviciosProyectosCorporativo) }})
+                                        @if ($i < count($serviciosProyectosCorporativo) - 1),
+                                            @endif
+                                    @endfor
+                                ],
+                                legend: {
+                                    show: true,
+                                    position: 'bottom',
+                                    offsetY: 0,
+                                    markers: {
+                                        width: 10,
+                                        height: 10,
+                                        radius: 100,
+                                    },
+                                    itemMargin: {
+                                        horizontal: 0,
+                                        vertical: 0
+                                    },
+                                },
+                                tooltip: {
+                                    fillSeriesColor: false
+                                },
+                            })).render();
                         });
-                      </script>
-
+                    </script>
                   </div>
                 </div>
               </div>
@@ -735,57 +552,65 @@
                   <div class="card-body">
                     <h3 class="card-title">Escalable</h3>
                         <div class="card-body">
-                            <div id="chart-demo-pie4" class="chart-lg"></div>
+                            <div id="chart-demo-pie-escalable" class="chart-lg"></div>
                         </div>
 
                       <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
                       <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                          window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-pie4'), {
-                            chart: {
-                              type: "donut",
-                              fontFamily: 'inherit',
-                              height: 240,
-                              sparkline: {
-                                enabled: true
-                              },
-                              animations: {
-                                enabled: true
-                              },
-                            },
-                            fill: {
-                              opacity: 1,
-                            },
-                            series: [44, 55, 12, 2],
-                            labels: ["Direct", "Affilliate", "E-mail", "Other"],
-                            tooltip: {
-                              theme: 'dark'
-                            },
-                            grid: {
-                              strokeDashArray: 4,
-                            },
-                            colors: [tabler.getColor("primary"), tabler.getColor("primary", 0.8), tabler.getColor("primary", 0.6), tabler.getColor("gray-300")],
-                            legend: {
-                              show: true,
-                              position: 'bottom',
-                              offsetY: 12,
-                              markers: {
-                                width: 10,
-                                height: 10,
-                                radius: 100,
-                              },
-                              itemMargin: {
-                                horizontal: 8,
-                                vertical: 8
-                              },
-                            },
-                            tooltip: {
-                              fillSeriesColor: false
-                            },
-                          })).render();
+                        document.addEventListener("DOMContentLoaded", function () {
+                            window.ApexCharts && (new ApexCharts(document.getElementById('chart-demo-pie-escalable'), {
+                                chart: {
+                                    type: "donut",
+                                    fontFamily: 'inherit',
+                                    height: 240,
+                                    sparkline: {
+                                        enabled: false
+                                    },
+                                    animations: {
+                                        enabled: true
+                                    },
+                                },
+                                fill: {
+                                    opacity: 1,
+                                },
+                                series: Object.values({!! json_encode($serviciosProyectosEscalable) !!}),
+                                labels: Object.keys({!! json_encode($serviciosProyectosEscalable) !!}),
+                                tooltip: {
+                                    theme: 'dark'
+                                },
+                                grid: {
+                                    strokeDashArray: 4,
+                                },
+                                colors: [
+                                    // Color personalizado para el primer servicio
+                                    '#0a4e9b',  // Reemplaza esto con el color que desees
+                                    // Colores según la cantidad de servicios (si hay más de uno)
+                                    @for ($i = 1; $i < count($serviciosProyectosEscalable); $i++)
+                                        tabler.getColor("primary", {{ $i / count($serviciosProyectosEscalable) }})
+                                        @if ($i < count($serviciosProyectosEscalable) - 1),
+                                            @endif
+                                    @endfor
+                                ],
+                                legend: {
+                                    show: true,
+                                    position: 'bottom',
+                                    offsetY: 0,
+                                    markers: {
+                                        width: 10,
+                                        height: 10,
+                                        radius: 100,
+                                    },
+                                    itemMargin: {
+                                        horizontal: 0,
+                                        vertical: 0
+                                    },
+                                },
+                                tooltip: {
+                                    fillSeriesColor: false
+                                },
+                            })).render();
                         });
-                      </script>
-
+                    </script>
                   </div>
                 </div>
               </div>

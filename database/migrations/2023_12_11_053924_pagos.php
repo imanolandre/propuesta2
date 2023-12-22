@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('diezmo');
             $table->string('libre');
             $table->string('metodopago');
-            $table->string('adjunto');
+            $table->string('adjunto')->nullable();;
             $table->timestamps();
             $table->foreign('proyecto_id')->references('id')->on('proyectos')->onDelete("cascade");
         });
