@@ -66,12 +66,14 @@
                             </div>
                             <div class="form-group" style="margin-bottom: 5px;">
                             <strong>Importe:</strong>
-                            ${{ $cotizacione->importe }} MXN
+                            ${{ number_format($cotizacione->importe, 2, '.', '') }} MXN
                             </div>
-                            <div class="form-group" style="margin-bottom: 5px;">
-                            <strong>Descuento:</strong>
-                            ${{ $cotizacione->descuento }} MXN
-                            </div>
+                            @if($cotizacione->descuento !== null && $cotizacione->descuento != 0.00)
+                                <div class="form-group" style="margin-bottom: 5px;">
+                                <strong>Descuento:</strong>
+                                ${{ number_format($cotizacione->descuento, 2, '.', '') }} MXN
+                                </div>
+                            @endif
                             @for($i = 1; $i <= 8; $i++)
                                     @php
                                         $servicioKey = "servicioadicional{$i}";

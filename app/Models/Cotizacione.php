@@ -52,7 +52,6 @@ class Cotizacione extends Model
     static $rules = [
 		'servicio' => 'required',
 		'importe' => 'required',
-		'descuento' => 'required',
 		'planes' => 'required',
 		'cliente' => 'required',
 		'descripcion' => 'required',

@@ -195,7 +195,7 @@
         </div>
         <div class="separador">___________________________</div>
         <h3 class="fuente" style="text-align: center; margin-top: -3px;">Cotización | Desarrollo de {{ $cotizacione->servicio }}</h3>
-        <div class="form-group borde" style="margin-top:-10px; height: 4em; overflow: hidden; line-height: 1;">
+        <div class="form-group borde" style="margin-top:-10px; min-height: 4em; overflow: hidden; line-height: 1;">
             <strong class="fuente">DESCRIPCIÓN DEL PROYECTO:</strong>
             {{ $cotizacione->descripcion }}
         </div>
@@ -366,16 +366,28 @@
         <h4 style="text-align: center; margin-top: 10px;">Detalles de pago</h4>
         <table>
             <tr>
-                <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Servicio</strong></th>
-                <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Importe</strong></th>
-                <th style="text-align: center; font-size:14px; font-weight:bold; background:#9cf85096;"><strong>Descuento</strong></th>
-                <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Anticipo 50%</strong></th>
+                @if($cotizacione->descuento !== null && $cotizacione->descuento != 0.00)
+                    <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Servicio</strong></th>
+                    <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Importe</strong></th>
+                    <th style="text-align: center; font-size:14px; font-weight:bold; background:#9cf85096;"><strong>Descuento</strong></th>
+                    <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Anticipo 50%</strong></th>
+                @else
+                    <th style="text-align: center; font-size:14px; font-weight:bold;" colspan="2"><strong>Servicio</strong></th>
+                    <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Importe</strong></th>
+                    <th style="text-align: center; font-size:14px; font-weight:bold;"><strong>Anticipo 50%</strong></th>
+                @endif
             </tr>
             <tr>
-                <td style="font-size:13px; background:#f5f5f2;">{{ $cotizacione->servicio }} {{ $cotizacione->planes }}</td>
-                <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $cotizacione->importe }} MXN</td>
-                <td style="text-align: center; font-size:13px; background:#9cf85096;">${{ $cotizacione->descuento }} MXN</td>
-                <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $anticipopr }} MXN</td>
+                @if($cotizacione->descuento !== null && $cotizacione->descuento != 0.00)
+                    <td style="font-size:13px; background:#f5f5f2;">{{ $cotizacione->servicio }} {{ $cotizacione->planes }}</td>
+                    <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $cotizacione->importe }} MXN</td>
+                    <td style="text-align: center; font-size:13px; background:#9cf85096;">${{ $cotizacione->descuento }} MXN</td>
+                    <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $anticipopr }} MXN</td>
+                @else
+                    <td style="font-size:13px; background:#f5f5f2;" colspan="2">{{ $cotizacione->servicio }} {{ $cotizacione->planes }}</td>
+                    <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $cotizacione->importe }} MXN</td>
+                    <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $anticipopr }} MXN</td>
+                @endif
             </tr>
             @for($i = 1; $i <= 8; $i++)
                 @php
@@ -385,10 +397,16 @@
 
                 @if(!empty($cotizacione->$servicioKey) && !empty($cotizacione->$importeKey))
                 <tr>
-                    <td style="font-size:13px; background:#f5f5f2;">{{ $cotizacione->$servicioKey }}</td>
-                    <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $cotizacione->$importeKey }} MXN</td>
-                    <td style="text-align: center; font-size:13px; background:#9cf85096;">$0 MXN</td>
-                    <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ number_format($cotizacione->$importeKey / 2, 2, '.', '') }} MXN</td>
+                    @if($cotizacione->descuento !== null && $cotizacione->descuento != 0.00)
+                        <td style="font-size:13px; background:#f5f5f2;">{{ $cotizacione->$servicioKey }}</td>
+                        <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $cotizacione->$importeKey }} MXN</td>
+                        <td style="text-align: center; font-size:13px; background:#9cf85096;"></td>
+                        <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ number_format($cotizacione->$importeKey / 2, 2, '.', '') }} MXN</td>
+                    @else
+                        <td style="font-size:13px; background:#f5f5f2;" colspan="2">{{ $cotizacione->$servicioKey }}</td>
+                        <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ $cotizacione->$importeKey }} MXN</td>
+                        <td style="text-align: center; font-size:13px; background:#f5f5f2;">${{ number_format($cotizacione->$importeKey / 2, 2, '.', '') }} MXN</td>
+                    @endif
                 </tr>
                 @endif
             @endfor

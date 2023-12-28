@@ -16,10 +16,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('servicio');
             $table->string('importe');
-            $table->string('descuento');
+            $table->string('descuento')->nullable();
             $table->string('planes');
             $table->string('cliente');
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->string('total')->nullable();
             $table->string('anticipo')->nullable();
             $table->string('anticipoadi')->nullable();

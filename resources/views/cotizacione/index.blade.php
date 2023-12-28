@@ -67,21 +67,21 @@
                                     <th><a class="table-header">Servicio</a></th>
                                     <th><a class="table-header">Planes</a></th>
                                     <th><a class="table-header">Importe $</a></th>
-                                    <th><a class="table-header">Descuento $</a></th>
+                                    <th><a class="table-header">Anticipo $</a></th>
                                     <th><a class="table-header">Documento</a></th>
                                     <th class="w-1"></th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                @forelse ($cotizaciones as $cotizacione)
+                                @forelse ($cotizaciones as $index => $cotizacione)
                                     <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $index + 1 }}</td>
                                             <td>{{ $cotizacione->cliente }}</td>
 											<td>{{ $cotizacione->servicio }}</td>
                                             <td>{{ $cotizacione->planes }}</td>
-											<td>${{ $cotizacione->importe }} MXN</td>
-											<td>${{ $cotizacione->descuento }} MXN</td>
+											<td>${{ number_format($cotizacione->importe, 2, '.', '') }} MXN</td>
+											<td>${{ $cotizacione->anticipo }} MXN</td>
                                             <td>{{ pathinfo($cotizacione->documento)['filename'] }}</td>
                                         <td>
                                             <div class="btn-list flex-nowrap">

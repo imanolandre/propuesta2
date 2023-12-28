@@ -56,7 +56,7 @@
     </div>
     <div class="col-md-3">
         <div class="form-group mb-3">
-            <label class="form-label required">   {{ Form::label('descuento') }}</label>
+            <label class="form-label">   {{ Form::label('descuento') }}</label>
             <div>
                 {{ Form::text('descuento', $cotizacione->descuento, ['class' => 'form-control texto' .
                 ($errors->has('descuento') ? ' is-invalid' : ''), 'placeholder' => 'Descuento']) }}
@@ -183,7 +183,6 @@
                 {{ Form::textarea('descripcion', $cotizacione->descripcion, ['class' => 'form-control texto' .
                 ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Agregar descripcion ...']) }}
                 {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
-                <small class="form-hint">cotizacione <b>descripcion</b> instruction.</small>
             </div>
         </div>
         <div class="form-footer">

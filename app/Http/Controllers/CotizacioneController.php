@@ -21,28 +21,9 @@ class CotizacioneController extends Controller
      */
     public function index(Request $request)
     {
-        $buscarpor = $request->input('buscarpor', '');
-        $orden = $request->input('orden', 'cliente'); // Cambia 'nombrecliente' por el campo de tu tabla
-        $direccion = $request->input('direccion', 'asc');
+        $cotizaciones = Cotizacione::orderBy('created_at', 'desc')->get();
 
-        $direccionCliente = ($orden === 'cliente') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionServicio = ($orden === 'servicio') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionPlanes = ($orden === 'planes') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionImporte = ($orden === 'importe') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionDescuento = ($orden === 'descuento') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-        $direccionDocumento = ($orden === 'documento') ? ($direccion === 'asc' ? 'desc' : 'asc') : 'asc';
-
-        $cotizaciones = Cotizacione::where('cliente', 'like', '%' . $buscarpor . '%')
-            ->orWhere('servicio', 'like', '%' . $buscarpor . '%')
-            ->orWhere('planes', 'like', '%' . $buscarpor . '%')
-            ->orWhere('importe', 'like', '%' . $buscarpor . '%')
-            ->orWhere('descuento', 'like', '%' . $buscarpor . '%')
-            ->orderBy($orden, $direccion)
-            ->paginate(10);
-
-        return view('cotizacione.index', compact('cotizaciones', 'buscarpor', 'orden', 'direccionCliente', 'direccionServicio', 'direccionPlanes', 'direccionImporte', 'direccionDescuento','direccionDocumento'))
-            ->with('i', (request()->input('page', 1) - 1) * $cotizaciones->perPage());
-    }
+        return view('cotizacione.index', compact('cotizaciones'));    }
 
     /**
      * Show the form for creating a new resource.
@@ -81,8 +62,9 @@ class CotizacioneController extends Controller
         $nombreArchivo = "COT-{$abreviaturaServicio}-{$nombreCliente}-{$fechaActualEnMayuscula}";
 
         // Obtener importe, descuento e importe adicional del formulario
-        $importe = floatval($request->input('importe'));
-        $descuento = floatval($request->input('descuento'));
+        $importe = number_format(floatval($request->input('importe')), 2, '.', '');
+        $descuento = number_format(floatval($request->input('descuento')), 2, '.', '');
+        $total = number_format(floatval($request->input('total')), 2, '.', '');
         $importeAdicional1 = number_format(floatval($request->input('importeadicional1')), 2, '.', '');
         $importeAdicional2 = number_format(floatval($request->input('importeadicional2')), 2, '.', '');
         $importeAdicional3 = number_format(floatval($request->input('importeadicional3')), 2, '.', '');
@@ -109,10 +91,12 @@ class CotizacioneController extends Controller
 
         // Crear la cotización
         $cotizacione = Cotizacione::create($request->all() + [
-            'total' => number_format($total, 2, '.', ''), // Formatear total con 2 decimales
-            'anticipo' => number_format($anticipo, 2, '.', ''), // Formatear anticipo con 2 decimales
-            'anticipoadi' => number_format($anticipoadi, 2, '.', ''), // Formatear anticipoadi con 2 decimales
-            'anticipototal' => number_format($anticipo, 2, '.', ''), // Inicialmente anticipototal es igual a anticipo
+            'total' => number_format($total, 2, '.', ''),
+            'importe' => $importe, // Formatear valor con 2 decimales
+            'descuento' => $descuento,
+            'anticipo' => number_format($anticipo, 2, '.', ''),
+            'anticipoadi' => number_format($anticipoadi, 2, '.', ''),
+            'anticipototal' => number_format($anticipo, 2, '.', ''),
             'importeadicional1' => $importeAdicional1,
             'importeadicional2' => $importeAdicional2,
             'importeadicional3' => $importeAdicional3,
@@ -222,7 +206,9 @@ class CotizacioneController extends Controller
             'total' => number_format($total, 2, '.', ''), // Formatear total con 2 decimales
             'anticipo' => number_format($anticipo, 2, '.', ''), // Formatear anticipo con 2 decimales
             'anticipoadi' => number_format($anticipoadi, 2, '.', ''), // Formatear anticipoadi con 2 decimales
-            'anticipototal' => number_format($anticipo, 2, '.', ''), // Inicialmente anticipototal es igual a anticipo
+            'anticipototal' => number_format($anticipo, 2, '.', ''),
+            'importe' => number_format($importe, 2, '.', ''), // Inicialmente anticipototal es igual a anticipo
+            'descuento' => number_format($descuento, 2, '.', ''),
             'importeadicional1' => $importeAdicional1,
             'importeadicional2' => $importeAdicional2,
             'importeadicional3' => $importeAdicional3,
