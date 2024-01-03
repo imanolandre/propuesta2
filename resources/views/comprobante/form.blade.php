@@ -176,6 +176,10 @@
     .texto{
         font-family: 'Poppins', sans-serif;
     }
+    .tom-select{
+        background-color: #ffffff;
+        color: #000000;
+    }
     /* Estilos del Contenedor del Spinner */
     #page-loader {
         position: fixed;

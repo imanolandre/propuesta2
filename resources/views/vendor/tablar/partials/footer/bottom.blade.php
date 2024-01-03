@@ -20,11 +20,8 @@
     // Obten la fecha actual
     const fechaActual = new Date();
 
-    // Obten el año actual
-    const añoActual = fechaActual.getFullYear();
-
     // Establece el texto de copyright
-    const copyrightText = `Copyright © ${añoActual}`;
+    const copyrightText = `Copyright © ${2023}`;
 
     // Encuentra el elemento HTML donde deseas mostrar el copyright
     const copyrightElement = document.getElementById("copyright");
