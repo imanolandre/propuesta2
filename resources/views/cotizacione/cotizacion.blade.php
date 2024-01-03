@@ -137,7 +137,7 @@
         .lista2{
             position: absolute;
             left: 51%;
-            top: 42.8%;
+            top: 44.2%;
         }
         .certi{
             width: 210px;

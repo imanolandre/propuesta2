@@ -6,7 +6,7 @@
 @extends('tablar::page')
 
 @section('title')
-    Cotizaciones
+    Comprobantes
 @endsection
 
 @section('content')
@@ -23,13 +23,13 @@
                         Módulo
                     </div>
                     <h2 class="page-title" style="font-size: 30px;">
-                        {{ __('Cotizaciones ') }}
+                        {{ __('Comprobante ') }}
                     </h2>
                 </div>
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('cotizaciones.create') }}" class="btn btn-primary d-none d-sm-inline-block texto">
+                        <a href="{{ route('comprobante.create') }}" class="btn btn-primary d-none d-sm-inline-block texto">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse" width="24" height="24"
                                  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -38,9 +38,9 @@
                                 <line x1="12" y1="5" x2="12" y2="19"/>
                                 <line x1="5" y1="12" x2="19" y2="12"/>
                             </svg>
-                            Agregar Cotización
+                            Agregar Comprobante
                         </a>
-                        <a href="{{ route('cotizaciones.create') }}" class="btn btn-primary d-sm-none btn-icon">
+                        <a href="{{ route('comprobante.create') }}" class="btn btn-primary d-sm-none btn-icon">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon-pulse" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
                         </a>
@@ -53,36 +53,38 @@
     <div class="page-body">
         <div class="container-xl">
             @if(config('tablar','display_alert'))
-                @include('sweetalert::alert')
+                @include('tablar::common.alert')
             @endif
             <div class="row row-deck row-cards">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body border-bottom py-3 table-responsive">
-                            <table style="margin-top: 55px; font-size:13px;" id="search-cotizaciones" class="table table-vcenter datatable">
+                            <table style="margin-top: 55px; font-size:13px;" id="search-comprobante" class="table table-vcenter datatable">
                                 <thead>
                                 <tr>
-                                    <th class="w-1"><a class="table-header">No.</a></th>
-                                    <th><a class="table-header">Cliente</a></th>
-                                    <th><a class="table-header">Servicio</a></th>
-                                    <th><a class="table-header">Planes</a></th>
-                                    <th><a class="table-header">Importe $</a></th>
-                                    <th><a class="table-header">Anticipo $</a></th>
-                                    <th><a class="table-header">Documento</a></th>
+                                    <th class="w-1">No.</th>
+										<th>Cotización</th>
+										<th>Cliente</th>
+										<th>Servicio</th>
+										<th>Importe Total</th>
+										<th>Anticipo</th>
+										<th>Adjunto</th>
+
                                     <th class="w-1"></th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                @forelse ($cotizaciones as $index => $cotizacione)
+                                @forelse ($comprobantes as $index => $comprobante)
                                     <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $cotizacione->cliente }}</td>
-											<td>{{ $cotizacione->servicio }}</td>
-                                            <td>{{ $cotizacione->planes }}</td>
-											<td>${{ number_format($cotizacione->importe, 2, '.', '') }} MXN</td>
-											<td>${{ $cotizacione->anticipo }} MXN</td>
-                                            <td>{{ pathinfo($cotizacione->documento)['filename'] }}</td>
+                                        <td>{{ $index + 1 }}</td>
+											<td>{{ pathinfo($comprobante->cotizacione->documento)['filename']}}</td>
+											<td>{{ $comprobante->documento }}</td>
+											<td>{{ $comprobante->servicio }}</td>
+											<td>{{ $comprobante->total }}</td>
+											<td>{{ $comprobante->anticipo }}</td>
+											<td>{{ $comprobante->adjunto }}</td>
+
                                         <td>
                                             <div class="btn-list flex-nowrap">
                                                 <div class="dropdown">
@@ -92,20 +94,20 @@
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         <a class="dropdown-item"
-                                                           href="{{ route('cotizaciones.show',$cotizacione->id) }}">
+                                                           href="{{ route('comprobante.show',$comprobante->id) }}">
                                                             Ver
                                                         </a>
                                                         <a class="dropdown-item"
-                                                           href="{{ route('cotizaciones.edit',$cotizacione->id) }}">
+                                                           href="{{ route('comprobante.edit',$comprobante->id) }}">
                                                             Editar
                                                         </a>
-                                                        <form id="delete-form-{{ $cotizacione->id }}"
-                                                            action="{{ route('cotizaciones.destroy',$cotizacione->id) }}"
+                                                        <form id="delete-form-{{ $comprobante->id }}"
+                                                            action="{{ route('comprobante.destroy',$comprobante->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
-                                                                    onclick="confirmDelete({{ $cotizacione->id }}); return false;"
+                                                                onclick="confirmDelete({{ $comprobante->id }}); return false;"
                                                                     class="dropdown-item text-red"><i
                                                                     class="fa fa-fw fa-trash"></i>
                                                                 Eliminar
@@ -129,7 +131,7 @@
         </div>
     </div>
     <script>
-        function confirmDelete(cotizacionId) {
+        function confirmDelete(comprobanteId) {
             Swal.fire({
                 title: '¿Estás seguro?',
                 text: "¡No podrá recuperar este registro!",
@@ -142,7 +144,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Obtén el formulario de eliminación específico utilizando el ID del formulario
-                    const deleteForm = document.getElementById(`delete-form-${cotizacionId}`);
+                    const deleteForm = document.getElementById(`delete-form-${comprobanteId}`);
                     if (deleteForm) {
                         deleteForm.submit();
                     }
@@ -158,7 +160,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 <script>
     $(document).ready(function () {
-        new DataTable('#search-cotizaciones', {
+        new DataTable('#search-comprobante', {
             responsive: true,
             autoWidth: false,
             language: {

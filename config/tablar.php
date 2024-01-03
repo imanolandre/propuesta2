@@ -150,7 +150,11 @@ return [
             'icon' => 'ti ti-report-money',
             'url' => '/cotizaciones'
         ],
-
+        [
+            'text' => 'Comprobantes',
+            'icon' => 'ti ti-license',
+            'url' => '/comprobante'
+        ],
 
     ],
 
