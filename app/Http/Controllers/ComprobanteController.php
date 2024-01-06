@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comprobante;
 use Illuminate\Http\Request;
 use App\Models\Cotizacione;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 /**
  * Class ComprobanteController
@@ -56,12 +58,37 @@ class ComprobanteController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Comprobante::$rules);
+        $request->validate(Comprobante::$rules);
+
+        // Obtén la cotización antes de crear el comprobante
+        $cotizacionId = $request->input('cotizacion_id');
+        $cotizacione = Cotizacione::find($cotizacionId);
+        $fechaFolio = Carbon::now()->locale('es_ES')->isoFormat('MMM');
+        $fechaFolioMayuscula = strtoupper($fechaFolio);
+        $foliocom = "COMP-{$fechaFolioMayuscula}";
+        $foliocot = $cotizacione->folio . '-' . str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT);
+
+        if (!$cotizacione) {
+            // Manejar el caso en el que la cotización no se encuentre
+            return redirect()->route('comprobante.index')->with('error', 'No se pudo encontrar la cotización asociada.');
+        }
 
         $comprobante = Comprobante::create($request->all());
+        // Usar comillas dobles para evaluar las variables correctamente
+        $nombreDocumento = "{$cotizacione->servicio} {$cotizacione->planes}";
 
-        return redirect()->route('comprobante.index')
-            ->with('success', 'Comprobante created successfully.');
+        // Genera el PDF utilizando la vista 'comprobante.blade.php'
+        $pdf = PDF::loadView('comprobante.comprobante', compact('cotizacione','comprobante','nombreDocumento','foliocom','foliocot'));
+
+        // Guarda el PDF en la carpeta public/archivo/comprobante
+        $pdfPath = "archivo/comprobante/Comprobante de Pago {$nombreDocumento} - {$comprobante->documento} - DESARROLLALAB.pdf";
+        $pdf->save(public_path($pdfPath));
+
+        // Actualiza el campo 'adjunto' en el modelo Comprobante
+        $comprobante->update(['adjunto' => $pdfPath]);
+
+        Alert::success('AGREGADO', 'Comprobante creada con éxito');
+        return redirect()->route('comprobante.index');
     }
 
     /**
@@ -112,12 +139,37 @@ class ComprobanteController extends Controller
      */
     public function update(Request $request, Comprobante $comprobante)
     {
-        request()->validate(Comprobante::$rules);
+        $request->validate(Comprobante::$rules);
+
+        // Obtén la cotización antes de actualizar el comprobante
+        $cotizacionId = $request->input('cotizacion_id');
+        $cotizacione = Cotizacione::find($cotizacionId);
+        $fechaFolio = Carbon::now()->locale('es_ES')->isoFormat('MMM');
+        $fechaFolioMayuscula = strtoupper($fechaFolio);
+        $foliocom = "COMP-{$fechaFolioMayuscula}";
+        $foliocot = $cotizacione->folio . '-' . str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT);
+
+        if (!$cotizacione) {
+            // Manejar el caso en el que la cotización no se encuentre
+            return redirect()->route('comprobante.index')->with('error', 'No se pudo encontrar la cotización asociada.');
+        }
 
         $comprobante->update($request->all());
+        // Usar comillas dobles para evaluar las variables correctamente
+        $nombreDocumento = "{$cotizacione->servicio} {$cotizacione->planes}";
 
-        return redirect()->route('comprobante.index')
-            ->with('success', 'Comprobante updated successfully');
+        // Genera el PDF utilizando la vista 'comprobante.blade.php'
+        $pdf = PDF::loadView('comprobante.comprobante', compact('cotizacione', 'comprobante', 'nombreDocumento', 'foliocom', 'foliocot'));
+
+        // Guarda el PDF en la carpeta public/archivo/comprobante
+        $pdfPath = "archivo/comprobante/Comprobante de Pago {$nombreDocumento} - {$comprobante->documento} - DESARROLLALAB.pdf";
+        $pdf->save(public_path($pdfPath));
+
+        // Actualiza el campo 'adjunto' en el modelo Comprobante
+        $comprobante->update(['adjunto' => $pdfPath]);
+
+        Alert::success('ACTUALIZADO', 'Comprobante actualizado correctamente');
+        return redirect()->route('comprobante.index');
     }
 
     /**
@@ -127,10 +179,16 @@ class ComprobanteController extends Controller
      */
     public function destroy($id)
     {
-        $comprobante = Comprobante::find($id)->delete();
+        $comprobante = Comprobante::find($id);
+        $documentoPath = $comprobante->adjunto;
+        // Elimina la cotización
+        $comprobante->delete();
+        if (!empty($documentoPath) && file_exists(public_path($documentoPath))) {
+            unlink(public_path($documentoPath));
+        }
 
-        return redirect()->route('comprobante.index')
-            ->with('success', 'Comprobante deleted successfully');
+        Alert::success('Eliminado', 'El comprobante ha sido borrado');
+        return redirect()->route('comprobante.index');
     }
 
     // Función en el controlador de PagoController

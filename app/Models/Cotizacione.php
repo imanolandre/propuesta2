@@ -64,7 +64,7 @@ class Cotizacione extends Model
      *
      * @var array
      */
-    protected $fillable = ['servicio','importe','descuento','planes','cliente','descripcion','servicioadicional1','importeadicional1','servicioadicional2','importeadicional2','servicioadicional3','importeadicional3','servicioadicional4','importeadicional4','servicioadicional5','importeadicional5','documento','anticipo','anticipoadi','anticipototal','total'];
+    protected $fillable = ['folio','servicio','importe','descuento','planes','cliente','descripcion','servicioadicional1','importeadicional1','servicioadicional2','importeadicional2','servicioadicional3','importeadicional3','servicioadicional4','importeadicional4','servicioadicional5','importeadicional5','documento','anticipo','anticipoadi','anticipototal','total'];
 
 
 

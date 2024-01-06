@@ -102,10 +102,11 @@ class CotizacioneController extends Controller
             'importeadicional3' => $importeAdicional3,
             'importeadicional4' => $importeAdicional4,
             'importeadicional5' => $importeAdicional5,
+            'folio' => $folio,
         ]);
 
         // Generate the PDF
-        $pdf = PDF::loadView('cotizacione.cotizacion', compact('cotizacione', 'nombreArchivo','anticipopr','folio'));
+        $pdf = PDF::loadView('cotizacione.cotizacion', compact('cotizacione', 'nombreArchivo','anticipopr'));
 
         // Save the PDF in the public/archivo/documentos folder
         $pdfPath = "archivo/documentos/{$nombreArchivo}.pdf";
@@ -115,13 +116,8 @@ class CotizacioneController extends Controller
         $cotizacione->update(['documento' => $pdfPath]);
 
         Alert::success('AGREGADO', 'Cotización creada con éxito');
-        return redirect()->route('cotizaciones.index');
+        return redirect()->route('cotizaciones.index')->with('folio', $folio);;
     }
-
-
-
-
-
     /**
      * Display the specified resource.
      *
@@ -214,10 +210,11 @@ class CotizacioneController extends Controller
             'importeadicional3' => $importeAdicional3,
             'importeadicional4' => $importeAdicional4,
             'importeadicional5' => $importeAdicional5,
+            'folio' => $folio,
         ]));
 
         // Generate the updated PDF
-        $pdf = PDF::loadView('cotizacione.cotizacion', compact('cotizacione', 'nombreArchivo','anticipopr','folio'));
+        $pdf = PDF::loadView('cotizacione.cotizacion', compact('cotizacione', 'nombreArchivo','anticipopr'));
 
         // Save the updated PDF in the public/archivo/documentos folder
         $pdfPath = "archivo/documentos/{$nombreArchivo}.pdf";

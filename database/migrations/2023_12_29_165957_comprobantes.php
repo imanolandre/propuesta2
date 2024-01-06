@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('metodopago');
             $table->string('foliooperacion');
             $table->string('fechaoperacion');
+            $table->string('fechaaplicacion');
             $table->string('adjunto')->nullable();;
             $table->timestamps();
             $table->foreign('cotizacion_id')->references('id')->on('cotizaciones')->onDelete("cascade");

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('servicio');
             $table->string('importe');
             $table->string('descuento')->nullable();
+            $table->string('folio')->nullable();
             $table->string('planes');
             $table->string('cliente');
             $table->text('descripcion');

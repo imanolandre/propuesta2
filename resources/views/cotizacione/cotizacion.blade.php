@@ -127,6 +127,7 @@
         }
         ul.two-columns {
             padding: 20px;
+            padding-bottom: 5px;
             margin-left: 20px;
             margin-top: -10px;
         }
@@ -182,7 +183,7 @@
         <div class="texto-blo2">
             <div class="form-group texto">
                 <label class="fuente">Folio:</label>
-                {{ $folio }}-{{ str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT) }}
+                {{ $cotizacione->folio }}-{{ str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT) }}
             </div>
             <div class="form-group texto">
                 <strong class="fuente">Fecha:</strong>
@@ -351,7 +352,7 @@
         <div class="texto-blo2">
             <div class="form-group texto">
                 <label class="fuente">Folio:</label>
-                {{ $folio }}-{{ str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT) }}
+                {{ $cotizacione->folio }}-{{ str_pad($cotizacione->id, 3, '0', STR_PAD_LEFT) }}
             </div>
             <div class="form-group texto">
                 <strong class="fuente">Fecha:</strong>
@@ -412,7 +413,7 @@
             @endfor
             <tr>
                 <td style="font-size:14px;font-style: italic;text-align:center; border: none;" colspan="3"><strong class="fuente">Total: </strong>{{ $textoTotal }} pesos MXN</td>
-                <td style="text-align: center; font-size:13px; background:#9cf85096;">${{ $cotizacione->total }} MXN</td>
+                <td class="fuente" style="text-align: center; font-size:13px; background:#9cf85096;">${{ $cotizacione->total }} MXN</td>
             </tr>
         </table>
         <h4 style="text-align: center; margin-top: 15px;">Información de pago</h4>

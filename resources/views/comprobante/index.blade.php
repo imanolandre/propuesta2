@@ -68,8 +68,6 @@
 										<th>Servicio</th>
 										<th>Importe Total</th>
 										<th>Anticipo</th>
-										<th>Adjunto</th>
-
                                     <th class="w-1"></th>
                                 </tr>
                                 </thead>
@@ -81,10 +79,8 @@
 											<td>{{ pathinfo($comprobante->cotizacione->documento)['filename']}}</td>
 											<td>{{ $comprobante->documento }}</td>
 											<td>{{ $comprobante->servicio }}</td>
-											<td>{{ $comprobante->total }}</td>
-											<td>{{ $comprobante->anticipo }}</td>
-											<td>{{ $comprobante->adjunto }}</td>
-
+											<td>${{ $comprobante->total }} MXN</td>
+											<td>${{ $comprobante->anticipo }} MXN</td>
                                         <td>
                                             <div class="btn-list flex-nowrap">
                                                 <div class="dropdown">

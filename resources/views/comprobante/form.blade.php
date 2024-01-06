@@ -24,7 +24,7 @@
         <div class="form-group mb-3">
             <label class="form-label">   {{ Form::label('Nombre Cliente') }}</label>
             <div>
-                {{ Form::text('documento', $nombreCliente, ['class' => 'form-control texto', 'readonly' => 'readonly', 'placeholder' => 'Cliente']) }}
+                {{ Form::text('documento', $comprobante->documento, ['class' => 'form-control texto', 'readonly' => 'readonly', 'placeholder' => 'Cliente']) }}
                 {!! $errors->first('documento', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="form-group mb-3">
             <label class="form-label">   {{ Form::label('total anticipo') }}</label>
             <div>
-                {{ Form::text('anticipo', $comprobante->anticipo, ['class' => 'form-control texto', 'readonly' => 'readonly', 'placeholder' => 'Anticipo']) }}
+                {{ Form::text('anticipo', $comprobante->anticipo, ['class' => 'form-control texto','placeholder' => 'Anticipo']) }}
                 {!! $errors->first('anticipo', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
@@ -110,6 +110,16 @@
                 {{ Form::datetimeLocal('fechaoperacion', $comprobante->fechaoperacion, ['class' => 'form-control texto' .
                 ($errors->has('fechaoperacion') ? ' is-invalid' : ''), 'placeholder' => 'Fechaoperacion']) }}
                 {!! $errors->first('fechaoperacion', '<div class="invalid-feedback">:message</div>') !!}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group mb-3">
+            <label class="form-label">   {{ Form::label('fecha de aplicación') }}</label>
+            <div>
+                {{ Form::datetimeLocal('fechaaplicacion', $comprobante->fechaaplicacion, ['class' => 'form-control texto' .
+                ($errors->has('fechaaplicacion') ? ' is-invalid' : ''), 'placeholder' => 'fechaaplicacion']) }}
+                {!! $errors->first('fechaaplicacion', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
     </div>

@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Comprobante extends Model
 {
-    
+
     static $rules = [
 		'cotizacion_id' => 'required',
 		'documento' => 'required',
@@ -42,6 +42,7 @@ class Comprobante extends Model
 		'metodopago' => 'required',
 		'foliooperacion' => 'required',
 		'fechaoperacion' => 'required',
+        'fechaaplicacion' => 'required',
     ];
 
     protected $perPage = 20;
@@ -51,7 +52,7 @@ class Comprobante extends Model
      *
      * @var array
      */
-    protected $fillable = ['cotizacion_id','documento','servicio','total','anticipo','descripcion','cuentaorigen','conceptopago','metodopago','foliooperacion','fechaoperacion','adjunto'];
+    protected $fillable = ['cotizacion_id','documento','servicio','total','anticipo','descripcion','cuentaorigen','conceptopago','metodopago','foliooperacion','fechaoperacion','fechaaplicacion','adjunto'];
 
 
     /**
@@ -61,6 +62,6 @@ class Comprobante extends Model
     {
         return $this->hasOne('App\Models\Cotizacione', 'id', 'cotizacion_id');
     }
-    
+
 
 }
